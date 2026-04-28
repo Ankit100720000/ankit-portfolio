@@ -1,0 +1,25 @@
+ANKIT MAURYA
+Frontend Developer & Creative Coder
+Email: hello@ankitmaurya.dev
+LinkedIn: https://www.linkedin.com/in/ankitmaurya/
+
+SUMMARY:
+Frontend Developer with 3+ years of experience building scalable ERP systems and web applications used by 2000+ users. Specialized in React, GSAP, and modern UI development with a strong focus on performance and usability.
+
+EXPERIENCE:
+- Science Olympiad Foundation (Mar 2025 – Present): Built ERP systems, dashboards, and API integrations.
+- Kashish Technology (Oct 2023 – Mar 2025): Built 15+ websites, SEO optimization.
+- PSS Technoservices (Feb 2023 – Sep 2023): Built 6+ websites, responsive UI.
+
+SKILLS:
+- Frontend: HTML, CSS, JavaScript, React, Tailwind
+- Animation: GSAP, Framer Motion
+- Advanced: API Integration, Data Visualization, Google Maps API, Performance Optimization
+- Tools: Git, GitHub, VS Code, Figma, Postman
+
+PROJECTS:
+- ERP Dashboard System
+- AI Chatbot System
+- Voice Task Management
+- Location Tracking System
+- E-commerce Platform
