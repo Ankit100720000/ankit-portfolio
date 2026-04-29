@@ -49,8 +49,14 @@ function App() {
         </main>
 
         {/* Footer */}
-        <footer className="section-block flex items-center justify-between gap-4 border-t border-white/[0.08] py-8 text-xs text-[var(--muted)]">
-          <p>© 2025 Ankit Maurya. All rights reserved.</p>
+        <footer
+          className="section-block flex flex-col items-start justify-between gap-4 border-t border-white/[0.06] py-10 text-xs text-[var(--muted)] sm:flex-row sm:items-center"
+          style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+        >
+          <p className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+            © 2026 Ankit Maurya. Crafted with care.
+          </p>
           <div className="flex items-center gap-6">
             <a href="#home" className="transition-colors hover:text-white">Home</a>
             <a href="#projects" className="transition-colors hover:text-white">Work</a>
@@ -61,7 +67,7 @@ function App() {
               rel="noreferrer"
               className="transition-colors hover:text-white"
             >
-              LinkedIn
+              LinkedIn ↗
             </a>
           </div>
         </footer>

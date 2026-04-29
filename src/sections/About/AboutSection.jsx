@@ -6,6 +6,12 @@ const skills = [
   'Redux Toolkit', 'Git & GitHub', 'Vite', 'Figma',
 ]
 
+const stats = [
+  { value: '3+', label: 'Years of experience', accent: 'from-[#d6ff3a]/40 to-transparent' },
+  { value: '20+', label: 'Projects delivered', accent: 'from-[#7cf2ff]/40 to-transparent' },
+  { value: '2000+', label: 'Users served', accent: 'from-[#b08bff]/40 to-transparent' },
+]
+
 function AboutSection() {
   const sectionRef = useSectionReveal()
 
@@ -28,9 +34,9 @@ function AboutSection() {
         <div className="flex flex-col justify-end gap-6" data-reveal data-reveal-delay="2">
           <p className="body-lg">
             Frontend Developer with{' '}
-            <span className="text-white font-medium">3+ years</span> of experience
+            <span className="font-medium text-white">3+ years</span> of experience
             building scalable ERP systems and web applications used by{' '}
-            <span className="text-white font-medium">2000+ users</span>.
+            <span className="font-medium text-white">2000+ users</span>.
           </p>
           <p className="body-md">
             I specialize in translating complex product requirements into interfaces
@@ -48,13 +54,22 @@ function AboutSection() {
       </div>
 
       {/* Skills list */}
-      <div className="mt-20" data-reveal data-reveal-delay="3">
-        <p className="label-text mb-8">Core Skills</p>
-        <div className="flex flex-wrap gap-3">
-          {skills.map((skill, i) => (
+      <div className="mt-24" data-reveal data-reveal-delay="3">
+        <div className="mb-8 flex items-baseline justify-between">
+          <p className="label-text">Core Skills</p>
+          <p
+            className="text-xs text-[var(--muted)]"
+            style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+          >
+            12 — toolset
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2.5">
+          {skills.map((skill) => (
             <span
               key={skill}
-              className="rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm text-[#a0a0a0] transition-all duration-300 hover:border-white/25 hover:bg-white/[0.07] hover:text-white"
+              className="rounded-full border border-white/[0.08] bg-white/[0.025] px-5 py-2.5 text-sm text-[#b6b9c4] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)]/40 hover:bg-white/[0.06] hover:text-white"
+              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
             >
               {skill}
             </span>
@@ -63,17 +78,25 @@ function AboutSection() {
       </div>
 
       {/* Stats row */}
-      <div className="mt-20 grid grid-cols-3 gap-8 border-t border-white/[0.08] pt-16" data-reveal data-reveal-delay="4">
-        {[
-          { value: '3+', label: 'Years of experience' },
-          { value: '20+', label: 'Projects delivered' },
-          { value: '2000+', label: 'Users served' },
-        ].map((s) => (
-          <div key={s.label}>
-            <p className="text-5xl font-black text-white sm:text-6xl lg:text-7xl" style={{ fontFamily: 'Poppins, sans-serif', letterSpacing: '-0.05em' }}>
+      <div
+        className="mt-20 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5"
+        data-reveal
+        data-reveal-delay="4"
+      >
+        {stats.map((s) => (
+          <div
+            key={s.label}
+            className="modern-card group p-7 sm:p-8"
+          >
+            <div
+              className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${s.accent}`}
+            />
+            <p
+              className="stat-number text-5xl sm:text-6xl lg:text-7xl"
+            >
               {s.value}
             </p>
-            <p className="mt-3 label-text">{s.label}</p>
+            <p className="mt-4 label-text">{s.label}</p>
           </div>
         ))}
       </div>

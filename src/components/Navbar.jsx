@@ -10,9 +10,10 @@ function Navbar() {
     const node = navRef.current
     if (!node) return
 
-    gsap.fromTo(node,
+    gsap.fromTo(
+      node,
       { y: -20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 }
+      { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 },
     )
   }, [])
 
@@ -25,34 +26,49 @@ function Navbar() {
   return (
     <header
       ref={navRef}
-      className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-5 sm:px-10 lg:px-16 xl:px-24 transition-all duration-500 ${
-        scrolled
-          ? 'bg-[#080808]/85 backdrop-blur-xl border-b border-white/[0.06]'
-          : 'bg-transparent'
-      }`}
+      className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 sm:pt-5"
     >
-      <a
-        href="#home"
-        className="font-poppins text-sm font-bold tracking-[0.12em] uppercase text-white"
-        style={{ fontFamily: 'Poppins, sans-serif' }}
+      <div
+        className={`flex w-full max-w-6xl items-center justify-between gap-4 rounded-full border px-4 py-2.5 transition-all duration-500 sm:px-5 ${
+          scrolled
+            ? 'border-white/[0.08] bg-[#0a0b10]/80 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.6)] backdrop-blur-xl'
+            : 'border-white/[0.05] bg-white/[0.02] backdrop-blur-md'
+        }`}
       >
-        Ankit<span className="text-[var(--accent)]">.</span>
-      </a>
+        <a
+          href="#home"
+          className="flex items-center gap-2 px-2 text-sm font-bold tracking-[0.14em] uppercase text-white"
+          style={{ fontFamily: 'Poppins, sans-serif' }}
+        >
+          <span className="relative inline-flex h-2 w-2">
+            <span className="absolute inset-0 rounded-full bg-[var(--accent)]" />
+            <span className="absolute inset-0 rounded-full bg-[var(--accent)] opacity-60 blur-[6px]" />
+          </span>
+          Ankit
+        </a>
 
-      <nav className="hidden items-center gap-10 md:flex">
-        {navLinks.map((link) => (
-          <a key={link.href} href={link.href} className="nav-link">
-            {link.label}
-          </a>
-        ))}
-      </nav>
+        <nav className="hidden items-center gap-1 md:flex">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="rounded-full px-4 py-2 text-sm font-medium text-[#9296a2] transition-all duration-300 hover:bg-white/[0.06] hover:text-white"
+              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
 
-      <a
-        href="mailto:mauryankit2615@gmail.com"
-        className="hidden items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-white backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-white/[0.08] sm:inline-flex"
-      >
-        Hire Me
-      </a>
+        <a
+          href="mailto:mauryankit2615@gmail.com"
+          className="group hidden items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-black transition-all duration-300 hover:bg-[var(--accent)] sm:inline-flex"
+          style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+        >
+          Hire Me
+          <span className="arrow-anim">→</span>
+        </a>
+      </div>
     </header>
   )
 }
