@@ -1,16 +1,32 @@
-# React + Vite
+# Ankit Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my portfolio. Here you'll find my skills, projects, and contact details.
 
-Currently, two official plugins are available:
+## About Me
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+I am a developer focused on building modern web applications with clean design and efficient code. I enjoy solving problems, learning new technologies, and creating user-friendly experiences.
 
-## React Compiler
+## Skills
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- HTML, CSS, JavaScript
+- React, Node.js
+- Responsive web design
+- Git and version control
+- UI/UX fundamentals
 
-## Expanding the ESLint configuration
+## Projects
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Project One
+A web application showcasing a modern interface with responsive layouts and interactive components.
+
+### Project Two
+A full-stack project with a backend API, database integration, and front-end user experience.
+
+### Project Three
+A portfolio website designed to highlight work, skills, and contact information.
+
+## Contact
+
+- Email: ankit@example.com
+- LinkedIn: linkedin.com/in/ankit
+- GitHub: github.com/ankit

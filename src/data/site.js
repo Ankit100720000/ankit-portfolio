@@ -14,7 +14,7 @@ export const navLinks = [
 export const heroMetrics = [
   { value: '3+', label: 'Years experience' },
   { value: '2000+', label: 'Users served' },
-  { value: '20+', label: 'Projects delivered' },
+  { value: '45+', label: 'Projects delivered' },
 ]
 
 export const valueHighlights = [

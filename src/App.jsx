@@ -3,16 +3,20 @@ import { Helmet } from 'react-helmet-async'
 import Navbar from '@/components/Navbar'
 import { useLenis } from '@/hooks/useLenis'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { useCursorGlass } from '@/hooks/useCursorGlass'
+import PremiumBackground from '@/components/PremiumBackground'
+import ScrollProgress from '@/common/ScrollProgress'
+import CommandPalette from '@/common/CommandPalette'
 import HeroSection from '@/sections/Hero/HeroSection'
 
 const AboutSection = lazy(() => import('@/sections/About/AboutSection'))
 const ProjectsSection = lazy(() => import('@/sections/Projects/ProjectsSection'))
 const ExperienceSection = lazy(() => import('@/sections/Experience/ExperienceSection'))
 const ContactSection = lazy(() => import('@/sections/Contact/ContactSection'))
-const Background3D = lazy(() => import('@/three/Background3D'))
 
 function App() {
   useLenis()
+  useCursorGlass()
   const prefersReducedMotion = usePrefersReducedMotion()
 
   return (
@@ -28,12 +32,12 @@ function App() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </Helmet>
 
-      <Suspense fallback={null}>
-        <Background3D reducedMotion={prefersReducedMotion} />
-      </Suspense>
+      <PremiumBackground reducedMotion={prefersReducedMotion} />
 
       <div className="relative isolate overflow-hidden">
+        <ScrollProgress />
         <Navbar />
+        <CommandPalette />
 
         <main className="page-shell">
           <HeroSection />

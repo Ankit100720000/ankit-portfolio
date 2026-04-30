@@ -79,7 +79,7 @@ body {
   position: relative;
 }
 
-/* Soft tint overlay sits above 3D canvas, below content */
+/* Soft tint overlay sits below content */
 body::before {
   content: '';
   position: fixed;
@@ -165,6 +165,18 @@ canvas { touch-action: none; }
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1) 20%, rgba(255, 255, 255, 0.1) 80%, transparent);
   }
 
+  /* Scroll progress */
+  .hero-progress {
+    background: linear-gradient(
+      90deg,
+      rgba(214, 255, 58, 0.0) 0%,
+      rgba(214, 255, 58, 0.9) 35%,
+      rgba(124, 242, 255, 0.8) 70%,
+      rgba(176, 139, 255, 0.0) 100%
+    );
+    box-shadow: 0 0 18px rgba(214, 255, 58, 0.35);
+  }
+
   /* Accent dot */
   .accent-dot {
     @apply inline-block h-2 w-2 rounded-full bg-[var(--accent)];
@@ -211,17 +223,62 @@ canvas { touch-action: none; }
     -webkit-backdrop-filter: blur(14px) saturate(120%);
   }
 
+  /* Glass panel (shared card surface) */
+  .glass-panel {
+    @apply relative overflow-hidden rounded-3xl;
+    background:
+      radial-gradient(680px 420px at var(--gx, 50%) var(--gy, 30%), rgba(255, 255, 255, 0.085), transparent 62%),
+      radial-gradient(90% 70% at 0% 0%, rgba(124, 242, 255, 0.06), transparent 55%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+      0 24px 70px -40px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(18px) saturate(135%);
+    -webkit-backdrop-filter: blur(18px) saturate(135%);
+  }
+  .glass-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(80% 60% at 20% 10%, rgba(255, 255, 255, 0.09), transparent 55%);
+    opacity: 0.45;
+    mix-blend-mode: screen;
+  }
+
   /* Modern card */
   .modern-card {
     @apply relative overflow-hidden rounded-3xl;
     background:
-      radial-gradient(120% 120% at 0% 0%, rgba(124, 242, 255, 0.05), transparent 40%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    transition: border-color 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      radial-gradient(680px 420px at var(--gx, 50%) var(--gy, 30%), rgba(255, 255, 255, 0.085), transparent 62%),
+      radial-gradient(90% 70% at 0% 0%, rgba(124, 242, 255, 0.06), transparent 55%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+      0 24px 70px -40px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(18px) saturate(135%);
+    -webkit-backdrop-filter: blur(18px) saturate(135%);
+    transition:
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+  .modern-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(80% 60% at 20% 10%, rgba(255, 255, 255, 0.09), transparent 55%);
+    opacity: 0.45;
+    mix-blend-mode: screen;
   }
   .modern-card:hover {
     border-color: rgba(255, 255, 255, 0.16);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+      0 28px 90px -50px rgba(0, 0, 0, 0.85);
   }
 
   /* Primary CTA */
@@ -335,7 +392,13 @@ canvas { touch-action: none; }
   .gradient-border {
     position: relative;
     border-radius: 1.5rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+    background:
+      radial-gradient(620px 420px at var(--gx, 50%) var(--gy, 30%), rgba(255, 255, 255, 0.07), transparent 62%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
   }
   .gradient-border::before {
     content: '';
@@ -348,7 +411,17 @@ canvas { touch-action: none; }
     -webkit-mask-composite: xor;
             mask-composite: exclude;
     pointer-events: none;
-    opacity: 0.6;
+    opacity: 0.42;
+  }
+  .gradient-border::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(70% 55% at 20% 10%, rgba(255, 255, 255, 0.09), transparent 55%);
+    opacity: 0.5;
+    mix-blend-mode: screen;
   }
 
   /* Number gradient */
@@ -389,6 +462,54 @@ canvas { touch-action: none; }
 }
 
 /* ─── Reduced motion ─────────────────────────────── */
+/* Premium background (non-3D) */
+.premium-bg {
+  contain: layout paint;
+}
+
+.premium-bg__base {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1400px 700px at 15% -10%, rgba(124, 242, 255, 0.07), transparent 60%),
+    radial-gradient(1100px 650px at 95% 5%, rgba(176, 139, 255, 0.06), transparent 62%),
+    radial-gradient(900px 700px at 50% 105%, rgba(214, 255, 58, 0.04), transparent 65%),
+    radial-gradient(900px 520px at var(--cursor-x, 50vw) var(--cursor-y, 20vh), rgba(255, 255, 255, 0.07), transparent 60%);
+}
+
+.premium-bg__mesh {
+  position: absolute;
+  inset: -18%;
+  background:
+    radial-gradient(500px 380px at calc(var(--cursor-x, 50vw) * 1) calc(var(--cursor-y, 20vh) * 1), rgba(124, 242, 255, 0.05), transparent 62%),
+    radial-gradient(520px 420px at calc(100% - (var(--cursor-x, 50vw) * 0.6)) calc(var(--cursor-y, 20vh) * 0.8), rgba(176, 139, 255, 0.045), transparent 64%),
+    radial-gradient(560px 440px at calc(var(--cursor-x, 50vw) * 0.7) calc(100% - (var(--cursor-y, 20vh) * 0.65)), rgba(214, 255, 58, 0.032), transparent 66%);
+  filter: blur(46px) saturate(115%);
+  opacity: 0.9;
+  transform: translateZ(0);
+}
+
+.premium-bg[data-reduced-motion="false"] .premium-bg__mesh {
+  animation: aurora-drift 18s ease-in-out infinite;
+}
+
+.premium-bg__grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.28;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 35%, #000 25%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 35%, #000 25%, transparent 78%);
+}
+
+.premium-bg__vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(6, 7, 10, 0.1) 0%, rgba(6, 7, 10, 0.62) 72%, rgba(6, 7, 10, 0.92) 100%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

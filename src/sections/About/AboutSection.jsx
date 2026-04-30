@@ -7,8 +7,8 @@ const skills = [
 ]
 
 const stats = [
-  { value: '3+', label: 'Years of experience', accent: 'from-[#d6ff3a]/40 to-transparent' },
-  { value: '20+', label: 'Projects delivered', accent: 'from-[#7cf2ff]/40 to-transparent' },
+  { value: '3.2+', label: 'Years of experience', accent: 'from-[#d6ff3a]/40 to-transparent' },
+  { value: '45+', label: 'Projects delivered', accent: 'from-[#7cf2ff]/40 to-transparent' },
   { value: '2000+', label: 'Users served', accent: 'from-[#b08bff]/40 to-transparent' },
 ]
 
