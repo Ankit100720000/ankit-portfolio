@@ -28,8 +28,6 @@ function App() {
           name="description"
           content="Frontend developer portfolio featuring scalable ERP systems, dashboards, and modern UI experiences with clean design and smooth performance."
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </Helmet>
 
       <PremiumBackground reducedMotion={prefersReducedMotion} />
@@ -62,7 +60,7 @@ function App() {
         {/* Footer */}
         <footer
           className="section-block flex flex-col items-start justify-between gap-4 border-t border-white/[0.06] py-10 text-xs text-[var(--muted)] sm:flex-row sm:items-center"
-          style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+          style={{ fontFamily: 'var(--font-display)' }}
         >
           <p className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />

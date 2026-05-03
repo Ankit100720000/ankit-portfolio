@@ -1,15 +1,26 @@
 import { useEffect, useRef } from 'react'
-import { gsap } from '@/animations/gsap'
-import { useTypewriter } from '@/hooks/useTypewriter'
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { ArrowUpRight } from 'lucide-react'
+import { gsap, ScrollTrigger } from '@/animations/gsap'
 import { heroMetrics } from '@/data/site'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { useTypewriter } from '@/hooks/useTypewriter'
 
-const roles = ['Frontend Developer', 'UI Engineer', 'ERP & CRM Designer', 'Product UI Craftsman']
+const roles = ['Frontend Developer', 'UI Devloper']
 
 const marqueeWords = [
-  'React', 'GSAP', 'ERP Systems', 'Dashboards', 'API Integration',
-  'Tailwind CSS', 'Framer Motion', 'UI Engineering', 'Product UI',
-]
+  'HTML', 'CSS', 'JavaScript', 'TypeScript',
+  'React', 'Next.js',
+  'Tailwind CSS', 'Framer Motion', 'GSAP',
+  'React Query', 'State Management',
+  'Component-Based Architecture', 'Single Page Applications',
+  'Responsive Design', 'Cross-Browser Compatibility',
+  'Web Accessibility', 'SEO Best Practices',
+  'Performance Optimization', 'Code Splitting', 'Lazy Loading',
+  'Image Optimization', 'Webpack', 'Babel',
+  'ESLint', 'Prettier',
+  'Jest', 'Cypress', 'Storybook',
+  'Design Systems', 'UI Engineering', 'User-Centered Design'
+];
 
 function HeroSection() {
   const sectionRef = useRef(null)
@@ -28,9 +39,23 @@ function HeroSection() {
         .from('[data-hero-cta]', { y: 18, opacity: 0, duration: 0.7 }, '-=0.6')
         .from('[data-hero-metric]', { y: 18, opacity: 0, duration: 0.7, stagger: 0.08 }, '-=0.4')
         .from('[data-hero-marquee]', { opacity: 0, y: 16, duration: 0.7 }, '-=0.5')
+
+      gsap.to('[data-hero-line]', {
+        xPercent: -3,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      })
     }, sectionRef)
 
-    return () => ctx.revert()
+    return () => {
+      ctx.revert()
+      ScrollTrigger.refresh()
+    }
   }, [prefersReducedMotion])
 
   return (
@@ -39,11 +64,9 @@ function HeroSection() {
       ref={sectionRef}
       className="section-block relative flex min-h-screen flex-col justify-between overflow-hidden pb-32 pt-32"
     >
-      {/* Aurora background */}
       <div className="aurora" />
       <div className="grid-overlay" />
 
-      {/* Subtle grain overlay */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay"
         style={{
@@ -53,61 +76,60 @@ function HeroSection() {
         }}
       />
 
-      {/* Main */}
       <div className="relative flex flex-1 flex-col justify-center py-12">
-        <div data-hero-label className="status-pill mb-10 self-start">
-          <span className="accent-dot" />
-          <span>Available for work · Q2 2026</span>
-        </div>
+        <div className="mx-auto flex w-full max-w-6xl flex-col items-center text-center">
+          
 
-        <div className="overflow-hidden">
-          <h1 className="display-heading text-balance">
-            <span className="block overflow-hidden">
-              <span className="block" data-hero-line>
-                Ankit Maurya
+          <div className="overflow-hidden">
+            <h1 className="display-heading text-balance">
+              <span className="block overflow-hidden mb-5">
+                <span className="block font-medium" data-hero-line>
+                  Ankit Maurya
+                </span>
               </span>
-            </span>
-            <span className="block overflow-hidden">
-              <span
-                className="block text-[var(--muted)]"
-                data-hero-line
-                style={{ fontSize: 'clamp(2.5rem, 8vw, 7rem)' }}
-              >
-                {typedText}
-                <span className="caret text-[var(--accent)]">_</span>
+              <span className="block overflow-hidden">
+                <span
+                  className="block text-white/45 font-medium"
+                  data-hero-line
+                  style={{ fontSize: 'clamp(2.35rem, 7.4vw, 6.7rem)' }}
+                >
+                  {typedText}
+                  <span className="caret text-[var(--accent)]">_</span>
+                </span>
               </span>
-            </span>
-          </h1>
-        </div>
+            </h1>
+          </div>
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-end">
-          <p className="body-lg max-w-2xl text-balance" data-hero-sub>
-            I build scalable web applications, ERP systems, and modern UI experiences —
-            with clean design, smooth performance, and a strong eye for product detail.
-          </p>
+          <div className="mt-12 max-w-4xl">
+            <p className="body-lg text-balance" data-hero-sub>
+              I design and build high-clarity ERP, CRM, analytics, and field-tracking
+              interfaces for teams that need speed, structure, and a premium product feel.
+            </p>
 
-          <div className="flex flex-wrap items-center gap-4 lg:justify-end" data-hero-cta>
-            <a href="#projects" className="btn-primary group">
-              View Work
-              <span className="arrow-anim">→</span>
-            </a>
-            <a href="#contact" className="btn-ghost">
-              Get in touch
-            </a>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4" data-hero-cta>
+              <a href="#projects" className="btn-primary group">
+                View Work
+                <ArrowUpRight
+                  size={18}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </a>
+              <a href="#contact" className="btn-ghost">
+                Get in touch
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Hero metrics */}
-        <div className="mt-20 grid grid-cols-3 gap-3 sm:gap-6">
+        <div className="mx-auto mt-16 grid w-full max-w-5xl grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-5 xl:mt-20">
           {heroMetrics.map((metric) => (
             <div
               key={metric.label}
               data-hero-metric
-              className="gradient-border px-5 py-6 sm:px-7 sm:py-7"
+              className="hero-stat-card"
             >
-              <p
-                className="stat-number text-3xl sm:text-4xl lg:text-5xl"
-              >
+              <span className="hero-stat-glow" />
+              <p className="stat-number text-4xl lg:text-5xl">
                 {metric.value}
               </p>
               <p className="mt-2 label-text text-[10px] sm:text-[11px]">
@@ -118,7 +140,6 @@ function HeroSection() {
         </div>
       </div>
 
-      {/* Marquee */}
       <div
         className="absolute inset-x-0 bottom-0 overflow-hidden border-t border-white/[0.06] py-4"
         data-hero-marquee

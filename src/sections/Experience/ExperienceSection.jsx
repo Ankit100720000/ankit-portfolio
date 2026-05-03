@@ -47,7 +47,7 @@ function ExperienceSection() {
                 <div>
                   <p
                     className="text-base font-semibold text-white"
-                    style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-display)' }}
                   >
                     {item.company}
                   </p>
@@ -57,7 +57,7 @@ function ExperienceSection() {
                 <div>
                   <p
                     className="text-xl font-bold text-white sm:text-2xl"
-                    style={{ fontFamily: 'Poppins, sans-serif', letterSpacing: '-0.03em' }}
+                    style={{ fontFamily: 'var(--font-display)', letterSpacing: 0 }}
                   >
                     {item.title}
                   </p>
@@ -74,7 +74,7 @@ function ExperienceSection() {
                 <div className="self-start">
                   <span
                     className="label-text tabular-nums opacity-40 transition-opacity duration-300 group-hover:opacity-90"
-                    style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-display)' }}
                   >
                     0{index + 1}
                   </span>

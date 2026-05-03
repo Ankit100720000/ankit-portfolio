@@ -51,7 +51,7 @@ function ContactSection() {
             <span className="accent-dot" />
             <p
               className="text-sm text-[var(--muted-2)]"
-              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+              style={{ fontFamily: 'var(--font-display)' }}
             >
               Available for new opportunities · Q2 2026
             </p>
@@ -76,7 +76,7 @@ function ContactSection() {
             <div className="mt-10 flex items-end justify-between gap-4">
               <span
                 className="text-lg font-semibold text-white transition-colors duration-300 group-hover:text-[var(--accent)] sm:text-xl"
-                style={{ fontFamily: 'Poppins, sans-serif' }}
+                style={{ fontFamily: 'var(--font-display)' }}
               >
                 {item.value}
               </span>

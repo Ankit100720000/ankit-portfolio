@@ -59,7 +59,7 @@ function AboutSection() {
           <p className="label-text">Core Skills</p>
           <p
             className="text-xs text-[var(--muted)]"
-            style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+            style={{ fontFamily: 'var(--font-display)' }}
           >
             12 — toolset
           </p>
@@ -69,7 +69,7 @@ function AboutSection() {
             <span
               key={skill}
               className="rounded-full border border-white/[0.08] bg-white/[0.025] px-5 py-2.5 text-sm text-[#b6b9c4] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)]/40 hover:bg-white/[0.06] hover:text-white"
-              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+              style={{ fontFamily: 'var(--font-display)' }}
             >
               {skill}
             </span>
