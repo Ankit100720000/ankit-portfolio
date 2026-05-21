@@ -29,10 +29,10 @@ function Navbar() {
       className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 sm:pt-5"
     >
       <div
-        className={`relative flex w-full max-w-6xl items-center justify-between gap-4 overflow-hidden rounded-full border px-4 py-2.5 transition-all duration-500 sm:px-5 ${
+        className={`relative flex w-full max-w-6xl items-center justify-between gap-4 overflow-hidden rounded-full border px-4 py-2.5 transition-all duration-500 sm:px-5 backdrop-blur-[80px] ${
           scrolled
-            ? 'border-white/[0.10] bg-[#0a0b10]/86 shadow-[0_14px_45px_-18px_rgba(0,0,0,0.8)] backdrop-blur-xl'
-            : 'border-white/[0.07] bg-white/[0.035] backdrop-blur-md'
+            ? 'border-white/[0.12] bg-[#080a0f]/90 shadow-[0_14px_45px_-18px_rgba(0,0,0,0.8)] '
+            : 'border-white/[0.07] bg-white/[0.035] '
         }`}
       >
         <span className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
@@ -44,7 +44,7 @@ function Navbar() {
         >
           <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-[11px] text-[var(--accent)]">
             AM
-            <span className="absolute inset-0 rounded-full bg-[var(--accent)]/20 blur-md" />
+            <span className="absolute inset-x-1 bottom-0 h-px bg-[var(--accent)]/70" />
           </span>
           Ankit
         </a>

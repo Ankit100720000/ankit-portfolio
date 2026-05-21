@@ -17,12 +17,10 @@ const coverMap = {
 }
 
 const projectPalettes = [
-  { accent: '#d6ff3a', soft: 'rgba(214, 255, 58, 0.16)', line: 'rgba(214, 255, 58, 0.58)' },
-  { accent: '#7cf2ff', soft: 'rgba(124, 242, 255, 0.16)', line: 'rgba(124, 242, 255, 0.58)' },
-  { accent: '#ff7ad9', soft: 'rgba(255, 122, 217, 0.15)', line: 'rgba(255, 122, 217, 0.55)' },
-  { accent: '#b08bff', soft: 'rgba(176, 139, 255, 0.17)', line: 'rgba(176, 139, 255, 0.58)' },
-  { accent: '#ffb86b', soft: 'rgba(255, 184, 107, 0.15)', line: 'rgba(255, 184, 107, 0.55)' },
-  { accent: '#64ff9f', soft: 'rgba(100, 255, 159, 0.14)', line: 'rgba(100, 255, 159, 0.55)' },
+  { accent: '#d8b568', soft: 'rgba(216, 181, 104, 0.13)', line: 'rgba(216, 181, 104, 0.5)' },
+  { accent: '#8dd8ff', soft: 'rgba(141, 216, 255, 0.12)', line: 'rgba(141, 216, 255, 0.48)' },
+  { accent: '#d6d0c4', soft: 'rgba(214, 208, 196, 0.11)', line: 'rgba(214, 208, 196, 0.42)' },
+  { accent: '#e0a6bf', soft: 'rgba(224, 166, 191, 0.11)', line: 'rgba(224, 166, 191, 0.42)' },
 ]
 
 function ProjectsSection() {
@@ -163,10 +161,9 @@ function ProjectsSection() {
 
   return (
     <section id="projects" ref={sectionRef} className="section-block relative pb-32 pt-20">
-      <div className="pointer-events-none absolute inset-x-0 top-10 -z-10 h-[520px] opacity-80">
-        <div className="absolute left-[-8%] top-10 h-72 w-72 rounded-full bg-[#7cf2ff]/10 blur-3xl" />
-        <div className="absolute right-[8%] top-28 h-80 w-80 rounded-full bg-[#ff7ad9]/10 blur-3xl" />
-        <div className="absolute left-[36%] top-0 h-64 w-64 rounded-full bg-[#d6ff3a]/10 blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-0 top-10 -z-10 h-[520px] opacity-70">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)]/30 to-transparent" />
+        <div className="absolute inset-x-0 top-36 h-80 bg-[linear-gradient(180deg,rgba(255,255,255,0.045),transparent)]" />
       </div>
 
       <div
@@ -179,7 +176,7 @@ function ProjectsSection() {
           className="absolute inset-8 will-change-transform [transform-style:preserve-3d]"
         >
           <div className="absolute inset-8 rounded-[2.2rem] border border-cyan-300/35 bg-cyan-300/10 shadow-[0_0_48px_-24px_rgba(124,242,255,0.8)] [transform:translateZ(58px)_rotate(12deg)]" />
-          <div className="absolute inset-14 rounded-full border border-lime-300/35 bg-lime-300/10 shadow-[0_0_48px_-24px_rgba(214,255,58,0.75)] [transform:translateZ(106px)]" />
+          <div className="absolute inset-14 rounded-lg border border-[#d8b568]/35 bg-[#d8b568]/10 shadow-[0_0_48px_-24px_rgba(216,181,104,0.75)] [transform:translateZ(106px)]" />
           <div className="absolute inset-2 rounded-[3rem] border border-fuchsia-300/30 bg-fuchsia-300/10 [transform:translateZ(-48px)_rotate(-18deg)]" />
           <div
             data-project-orbit
@@ -187,29 +184,29 @@ function ProjectsSection() {
           />
           <div
             data-project-depth
-            className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white/80 shadow-[0_0_45px_-12px_rgba(255,255,255,0.8)] [transform:translateZ(136px)_rotate(24deg)]"
+            className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-md bg-white/80 shadow-[0_0_45px_-12px_rgba(255,255,255,0.8)] [transform:translateZ(136px)_rotate(24deg)]"
           />
         </div>
         <div className="absolute -bottom-6 left-1/2 h-px w-36 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
       </div>
 
-      <div className="flex flex-col gap-8 pb-14 lg:flex-row lg:items-end lg:justify-between">
+      <div className="flex flex-col gap-8 pb-14 lg:flex-col">
         <div>
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70 backdrop-blur-xl">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70 backdrop-blur-xl">
             <Sparkles size={14} className="text-[var(--accent)]" />
             Enterprise Project Library
           </div>
-          <h2 className="section-heading max-w-2xl text-balance">
+          <h2 className="section-heading max-w-full text-balance">
             Colorful systems built for <span className="text-gradient-cool">real operations.</span>
           </h2>
         </div>
 
-        <div className="max-w-md lg:text-right">
+        <div className="w-full max-w-2xl">
           <p className="body-md text-balance">
             ERP, CRM, reporting, logistics, exams, tracking, and internal tools shaped with
             senior-level structure, modern colors, and polished product detail.
           </p>
-          <div className="mt-5 flex flex-wrap gap-2 lg:justify-end">
+          <div className="mt-5 flex flex-wrap gap-2 lg:justify-start">
             {['35+ modules', 'ERP + CRM', 'Maps + Analytics'].map((item) => (
               <span key={item} className="pill border-white/15 bg-white/[0.06] text-white/75">
                 {item}
@@ -228,7 +225,7 @@ function ProjectsSection() {
             hoveredId ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#0c0d12] shadow-[0_24px_60px_-28px_rgba(0,0,0,0.8)]">
+          <div className="overflow-hidden rounded-md border border-white/10 bg-[#0c0d12] shadow-[0_24px_60px_-28px_rgba(0,0,0,0.8)]">
             {hoveredCover ? (
               <img
                 src={hoveredCover}
@@ -248,7 +245,7 @@ function ProjectsSection() {
               <article
                 key={project.id}
                 data-proj-entry
-                className={`group relative min-h-[420px] cursor-pointer overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0b0d12]/90 p-5 shadow-[0_18px_55px_-42px_rgba(0,0,0,0.9)] transition-transform transition-colors duration-300 hover:-translate-y-1 hover:border-white/20 ${
+                className={`group relative min-h-[420px] cursor-pointer overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]/90 p-5 shadow-[0_18px_55px_-42px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-colors transition-transform duration-300 hover:-translate-y-1 hover:border-white/20 ${
                   hoveredId && !isHovered ? 'opacity-55' : 'opacity-100'
                 }`}
                 style={{
@@ -256,7 +253,7 @@ function ProjectsSection() {
                   '--project-soft': palette.soft,
                   '--project-line': palette.line,
                   background:
-                    `radial-gradient(620px 260px at 12% 0%, ${palette.soft}, transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.065), rgba(255,255,255,0.018))`,
+                    `linear-gradient(135deg, ${palette.soft}, transparent 34%), linear-gradient(180deg, rgba(255,255,255,0.062), rgba(255,255,255,0.018))`,
                 }}
                 onClick={() => setActiveProject(project)}
                 onMouseEnter={() => setHoveredId(project.id)}
@@ -268,29 +265,29 @@ function ProjectsSection() {
               >
                 <span className="project-card-light" aria-hidden="true" />
                 <div className="absolute inset-x-0 top-0 h-1 bg-[var(--project-accent)] opacity-80" />
-                <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[var(--project-accent)]/15 blur-2xl transition-opacity duration-300 group-hover:opacity-80" />
+                <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent opacity-60" />
                 <div className="pointer-events-none absolute bottom-0 left-0 h-28 w-full bg-gradient-to-t from-black/35 to-transparent" />
 
                 <div className="relative z-10 flex h-full flex-col">
                   <div className="mb-7 flex items-start justify-between gap-4">
                     <div className="flex items-center gap-3">
                       <span
-                        className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-black/20 text-sm font-bold text-white shadow-[0_10px_28px_-18px_var(--project-line)]"
+                        className="flex h-11 w-11 items-center justify-center rounded-md border border-white/10 bg-black/20 text-sm font-bold text-white shadow-[0_10px_28px_-18px_var(--project-line)]"
                         style={{ fontFamily: 'var(--font-display)' }}
                       >
                         {String(index + 1).padStart(2, '0')}
                       </span>
-                      <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/65">
+                      <span className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/65">
                         <Layers3 size={13} style={{ color: palette.accent }} />
                         Module
                       </span>
                     </div>
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.045] text-white/70 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:bg-white group-hover:text-black">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-md border border-white/10 bg-white/[0.045] text-white/70 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:bg-white group-hover:text-black">
                       <ArrowUpRight size={18} />
                     </span>
                   </div>
 
-                  <div className="mb-6 overflow-hidden rounded-2xl border border-white/10 bg-black/20">
+                  <div className="mb-6 overflow-hidden rounded-md border border-white/10 bg-black/20">
                     <img
                       src={coverMap[project.id] || project.preview}
                       alt={project.title}
@@ -312,7 +309,7 @@ function ProjectsSection() {
                     {project.metrics.slice(0, 2).map((metric) => (
                       <div
                         key={metric}
-                        className="rounded-2xl border border-white/[0.075] bg-black/20 px-4 py-3 text-xs font-medium text-white/72"
+                        className="rounded-md border border-white/[0.075] bg-black/20 px-4 py-3 text-xs font-medium text-white/72"
                       >
                         {metric}
                       </div>

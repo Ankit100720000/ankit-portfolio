@@ -5,7 +5,7 @@ import { heroMetrics } from '@/data/site'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import { useTypewriter } from '@/hooks/useTypewriter'
 
-const roles = ['Frontend Developer', 'UI Devloper']
+const roles = ['Frontend Developer', 'UI Developer']
 
 const marqueeWords = [
   'HTML', 'CSS', 'JavaScript', 'TypeScript',
@@ -62,7 +62,7 @@ function HeroSection() {
     <section
       id="home"
       ref={sectionRef}
-      className="section-block relative flex min-h-screen flex-col justify-between overflow-hidden pb-32 pt-32"
+      className="section-block relative flex min-h-screen flex-col justify-between overflow-hidden pb-28 pt-32"
     >
       <div className="aurora" />
       <div className="grid-overlay" />
@@ -78,7 +78,10 @@ function HeroSection() {
 
       <div className="relative flex flex-1 flex-col justify-center py-12">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center text-center">
-          
+          <div className="mb-8 inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.045] px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/70 backdrop-blur-xl" data-hero-label>
+            <span className="h-1.5 w-8 bg-gradient-to-r from-[var(--accent)] to-transparent" />
+            Portfolio 2026
+          </div>
 
           <div className="overflow-hidden">
             <h1 className="display-heading text-balance">
@@ -89,9 +92,9 @@ function HeroSection() {
               </span>
               <span className="block overflow-hidden">
                 <span
-                  className="block text-white/45 font-medium"
+                  className="block font-medium text-white/55"
                   data-hero-line
-                  style={{ fontSize: 'clamp(2.35rem, 7.4vw, 6.7rem)' }}
+                  style={{ fontSize: 'clamp(2.2rem, 6.6vw, 6.1rem)' }}
                 >
                   {typedText}
                   <span className="caret text-[var(--accent)]">_</span>

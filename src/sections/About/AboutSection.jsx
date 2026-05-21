@@ -7,9 +7,9 @@ const skills = [
 ]
 
 const stats = [
-  { value: '3.2+', label: 'Years of experience', accent: 'from-[#d6ff3a]/40 to-transparent' },
-  { value: '45+', label: 'Projects delivered', accent: 'from-[#7cf2ff]/40 to-transparent' },
-  { value: '2000+', label: 'Users served', accent: 'from-[#b08bff]/40 to-transparent' },
+  { value: '3+', label: 'Years of experience', accent: 'from-[#d8b568]/45 to-transparent' },
+  { value: '45+', label: 'Projects delivered', accent: 'from-[#8dd8ff]/35 to-transparent' },
+  { value: '2000+', label: 'Users served', accent: 'from-[#d6d0c4]/35 to-transparent' },
 ]
 
 function AboutSection() {
@@ -68,7 +68,7 @@ function AboutSection() {
           {skills.map((skill) => (
             <span
               key={skill}
-              className="rounded-full border border-white/[0.08] bg-white/[0.025] px-5 py-2.5 text-sm text-[#b6b9c4] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)]/40 hover:bg-white/[0.06] hover:text-white"
+              className="rounded-md border border-white/[0.08] bg-white/[0.025] px-5 py-2.5 text-sm text-[#b6b9c4] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)]/40 hover:bg-white/[0.06] hover:text-white"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               {skill}

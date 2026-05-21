@@ -30,9 +30,8 @@ function ContactSection() {
 
       {/* CTA panel */}
       <div className="modern-card relative overflow-hidden p-8 sm:p-14 lg:p-20" data-reveal>
-        {/* Decorative aurora */}
-        <div className="pointer-events-none absolute -right-20 -top-20 h-[480px] w-[480px] rounded-full bg-[var(--accent)]/[0.10] blur-[120px]" />
-        <div className="pointer-events-none absolute -bottom-32 -left-20 h-[420px] w-[420px] rounded-full bg-[#7cf2ff]/[0.06] blur-[120px]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)]/45 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(0deg,rgba(216,181,104,0.07),transparent)]" />
 
         <div className="relative">
           <p className="label-text mb-8">Contact</p>
