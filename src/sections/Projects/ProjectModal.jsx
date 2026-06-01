@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 
-function ProjectModal({ project, coverMap = {}, palettes = [], projectIndex = 0, onClose }) {
+function ProjectModal({ project, palettes = [], projectIndex = 0, onClose }) {
   useEffect(() => {
     if (!project) return undefined
 
@@ -52,6 +52,9 @@ function ProjectModal({ project, coverMap = {}, palettes = [], projectIndex = 0,
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Top Accent Line */}
+            <div className="absolute left-0 top-0 z-20 h-1 w-full bg-[var(--modal-accent)]" />
+
             <button
               type="button"
               onClick={onClose}
@@ -61,26 +64,7 @@ function ProjectModal({ project, coverMap = {}, palettes = [], projectIndex = 0,
               <X size={18} />
             </button>
 
-            {(() => {
-              const cover = coverMap[project.id] || project.preview
-              return cover ? (
-                <div className="relative overflow-hidden border-b border-white/10">
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0d12] via-transparent to-transparent" />
-                  <div className="absolute left-0 top-0 h-1 w-full bg-[var(--modal-accent)]" />
-                  <img
-                    src={cover}
-                    alt={project.title}
-                    className="h-60 w-full object-cover opacity-80 saturate-125 sm:h-80"
-                  />
-                </div>
-              ) : (
-                <div className="flex h-48 items-center justify-center bg-white/[0.03] text-sm text-[var(--muted)]">
-                  {project.metrics[0]}
-                </div>
-              )
-            })()}
-
-            <div className="p-7 sm:p-10">
+            <div className="p-7 sm:p-10 pt-16 sm:pt-20">
               <div className="mb-8">
                 <p className="label-text mb-4 text-[var(--modal-accent)]">Enterprise Case Study</p>
                 <h3

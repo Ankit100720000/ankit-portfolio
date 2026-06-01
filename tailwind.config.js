@@ -4,22 +4,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#0f0f0f',
-        surface: '#151515',
-        ink: '#f8fafc',
+        background: '#060610',
+        surface: '#0d0d1f',
+        ink: '#f0f0ff',
         accent: {
-          blue: '#60a5fa',
-          purple: '#8b5cf6',
-          cyan: '#22d3ee',
+          cyan: '#00f5d4',
+          violet: '#a259ff',
+          orange: '#ff8c42',
+          pink: '#ff6eb4',
         },
       },
       fontFamily: {
-        display: ['Inter', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Syne', 'system-ui', 'sans-serif'],
+        body: ['Outfit', 'system-ui', 'sans-serif'],
+        serif: ['Cormorant Garamond', 'serif'],
       },
       boxShadow: {
-        soft: '0 20px 60px rgba(15, 23, 42, 0.45)',
-        glow: '0 0 0 1px rgba(255,255,255,0.05), 0 24px 80px rgba(96, 165, 250, 0.15)',
+        soft: '0 20px 60px rgba(6, 6, 16, 0.6)',
+        'glow-cyan': '0 0 20px rgba(0, 245, 212, 0.25), 0 0 60px rgba(0, 245, 212, 0.1)',
+        'glow-violet': '0 0 20px rgba(162, 89, 255, 0.25), 0 0 60px rgba(162, 89, 255, 0.1)',
       },
       backgroundImage: {
         grid: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
@@ -27,6 +30,8 @@ export default {
       animation: {
         float: 'float 7s ease-in-out infinite',
         'pulse-soft': 'pulse-soft 4s ease-in-out infinite',
+        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+        'spin-slow': 'spin-slow 8s linear infinite',
       },
       keyframes: {
         float: {

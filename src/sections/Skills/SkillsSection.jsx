@@ -1,9 +1,9 @@
 import { memo } from 'react'
-import SectionHeading from '@/components/SectionHeading'
+import SectionHeading from '@/components/common/SectionHeading'
 import { skillGroups } from '@/data/site'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
-import GlassCard from '@/ui/GlassCard'
-import SectionContainer from '@/ui/SectionContainer'
+import GlassCard from '@/components/ui/GlassCard'
+import SectionContainer from '@/components/ui/SectionContainer'
 
 const SkillCard = memo(function SkillCard({ group }) {
   return (

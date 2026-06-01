@@ -1,103 +1,248 @@
+import { useRef, useEffect } from 'react'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
+import { gsap, splitWordReveal, animateCounter } from '@/animations/gsap'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { SectionConnector, SkillOrbitSvg } from '@/components/common/SvgDecorations'
+import { Code2, Layers, Zap, Database, GitBranch, Globe, Package } from 'lucide-react'
 
-const skills = [
-  'React', 'JavaScript (ES6+)', 'TypeScript', 'HTML5 & CSS3',
-  'Tailwind CSS', 'GSAP', 'Framer Motion', 'REST APIs',
-  'Redux Toolkit', 'Git & GitHub', 'Vite', 'Figma',
+const skillsWithIcons = [
+  { name: 'React', icon: <Code2 size={13} />, color: '#ff8709' },
+  { name: 'JavaScript', icon: <Zap size={13} />, color: '#f7bdf8' },
+  { name: 'TypeScript', icon: <Code2 size={13} />, color: '#ff5d73' },
+  { name: 'HTML5 & CSS3', icon: <Globe size={13} />, color: '#ffd166' },
+  { name: 'Tailwind CSS', icon: <Layers size={13} />, color: '#ff8709' },
+  { name: 'GSAP', icon: <Zap size={13} />, color: '#f7bdf8' },
+  { name: 'Framer Motion', icon: <Zap size={13} />, color: '#ff5d73' },
+  { name: 'REST APIs', icon: <Database size={13} />, color: '#ffd166' },
+  { name: 'Redux Toolkit', icon: <Package size={13} />, color: '#ff8709' },
+  { name: 'Git & GitHub', icon: <GitBranch size={13} />, color: '#ffd166' },
+  { name: 'Vite', icon: <Zap size={13} />, color: '#f7bdf8' },
+  { name: 'Figma', icon: <Layers size={13} />, color: '#ff5d73' },
 ]
 
 const stats = [
-  { value: '3+', label: 'Years of experience', accent: 'from-[#d8b568]/45 to-transparent' },
-  { value: '45+', label: 'Projects delivered', accent: 'from-[#8dd8ff]/35 to-transparent' },
-  { value: '2000+', label: 'Users served', accent: 'from-[#d6d0c4]/35 to-transparent' },
+  { value: '3+', label: 'Years of experience', accent: '#ff8709', glow: 'rgba(255,135,9,0.15)', border: 'rgba(255,135,9,0.2)' },
+  { value: '45+', label: 'Projects delivered', accent: '#f7bdf8', glow: 'rgba(247,189,248,0.15)', border: 'rgba(247,189,248,0.2)' },
+  { value: '2K+', label: 'Users served', accent: '#ff5d73', glow: 'rgba(255,93,115,0.15)', border: 'rgba(255,93,115,0.2)' },
 ]
+
+function AnimatedStatCard({ stat }) {
+  const numRef = useRef(null)
+
+  useEffect(() => {
+    const el = numRef.current
+    if (!el) return
+    // Parse numeric part (e.g. "3+" -> 3, "45+" -> 45, "2K+" -> 2)
+    const raw = String(stat.value)
+    const num = parseFloat(raw.replace(/[^0-9.]/g, ''))
+    const suffix = raw.replace(/[0-9.]/g, '')
+    if (!isNaN(num)) {
+      animateCounter(el, num, suffix, 1.6)
+    }
+  }, [stat.value])
+
+  return (
+    <div
+      className="glow-card group relative flex flex-col gap-3 p-6 sm:p-8"
+      style={{ '--hover-glow': stat.glow }}
+    >
+      {/* Top accent line */}
+      <div
+        className="absolute inset-x-0 top-0 h-0.5 rounded-t-xl"
+        style={{ background: `linear-gradient(90deg, transparent, ${stat.accent}, transparent)` }}
+      />
+
+      <p
+        ref={numRef}
+        className="text-5xl font-extrabold sm:text-6xl lg:text-7xl"
+        style={{
+          fontFamily: 'var(--font-display)',
+          letterSpacing: '-0.03em',
+          background: `linear-gradient(135deg, ${stat.accent} 0%, #ffffff 70%)`,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+        }}
+      >
+        {stat.value}
+      </p>
+      <p
+        className="text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors duration-300"
+        style={{ fontFamily: 'var(--font-display)', color: 'var(--muted-2)' }}
+      >
+        {stat.label}
+      </p>
+
+      {/* Hover glow */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        style={{ background: `radial-gradient(50% 50% at 50% 0%, ${stat.glow}, transparent)` }}
+      />
+    </div>
+  )
+}
 
 function AboutSection() {
   const sectionRef = useSectionReveal()
+  const headingRef = useRef(null)
+  const prefersReducedMotion = usePrefersReducedMotion()
+
+  useEffect(() => {
+    if (headingRef.current) splitWordReveal(headingRef.current, headingRef.current, 0.1)
+  }, [])
+
+  useEffect(() => {
+    if (!sectionRef.current || prefersReducedMotion) return
+
+    const ctx = gsap.context(() => {
+      gsap.to(document.documentElement, {
+        '--bg': '#16110e',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 50%',
+          end: 'bottom 50%',
+          scrub: 1.2,
+          invalidateOnRefresh: true,
+        }
+      })
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [prefersReducedMotion])
 
   return (
     <section id="about" ref={sectionRef} className="section-block py-32">
       <div className="h-rule mb-20" />
+      <SectionConnector color="#ff8709" />
 
-      <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:gap-24">
-        {/* Left: Label + heading */}
+      {/* Section label + headings */}
+      <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20 mb-16">
+        {/* Left: label + heading */}
         <div>
           <p className="label-text mb-6" data-reveal>About</p>
-          <h2 className="section-heading text-balance" data-reveal data-reveal-delay="1">
-            Frontend craft at
-            <br />
-            <span className="text-gradient-accent">production scale.</span>
+          <h2
+            ref={headingRef}
+            className="section-heading text-balance"
+          >
+            Frontend craft at{' '}
+            <span className="text-gradient-cool">production scale.</span>
           </h2>
         </div>
 
-        {/* Right: Story paragraphs */}
-        <div className="flex flex-col justify-end gap-6" data-reveal data-reveal-delay="2">
+        {/* Right: story */}
+        <div className="flex flex-col justify-end gap-5" data-reveal data-reveal-delay="2">
           <p className="body-lg">
             Frontend Developer with{' '}
-            <span className="font-medium text-white">3+ years</span> of experience
+            <span className="font-semibold text-white">3+ years</span> of experience
             building scalable ERP systems and web applications used by{' '}
-            <span className="font-medium text-white">2000+ users</span>.
+            <span className="font-semibold text-white">2,000+ users</span>.
           </p>
           <p className="body-md">
             I specialize in translating complex product requirements into interfaces
             that feel simple, responsive, and visually intentional. My sweet spot
             is where dense information meets strong UX — ERP workflows, dashboards,
-            AI-assisted features, and customer-facing products where performance
-            matters as much as the visual finish.
+            AI-assisted features, and customer-facing products.
           </p>
           <p className="body-md">
-            Currently working at the{' '}
-            <span className="text-white">Science Olympiad Foundation</span>,
-            building internal systems for teams across finance, HR, and operations.
+            Currently at{' '}
+            <span className="font-medium text-white">Science Olympiad Foundation</span>,
+            building internal systems for finance, HR, and operations teams.
           </p>
         </div>
       </div>
 
-      {/* Skills list */}
-      <div className="mt-24" data-reveal data-reveal-delay="3">
-        <div className="mb-8 flex items-baseline justify-between">
+      {/* Bento grid */}
+      <div
+        className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+        data-reveal
+        data-reveal-delay="3"
+      >
+        {/* ── Big "What I do" card — spans 2 cols on lg ── */}
+        <div
+          className="glow-card relative p-7 lg:col-span-2"
+          style={{ background: 'linear-gradient(135deg, rgba(0,245,212,0.04) 0%, rgba(13,13,31,0.9) 60%)' }}
+        >
+          <div className="absolute inset-x-0 top-0 h-0.5 rounded-t-xl"
+            style={{ background: 'linear-gradient(90deg, transparent, var(--accent), transparent)' }}
+          />
+          <p className="label-text mb-5">What I do</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              { title: 'ERP & Dashboards', desc: 'Building complex enterprise systems with clean data visualization and efficient UX patterns.', accent: '#00f5d4' },
+              { title: 'Modern UI Engineering', desc: 'Crafting pixel-perfect interfaces with smooth animations, responsive layouts, and accessibility.', accent: '#a259ff' },
+              { title: 'API Integration', desc: 'Seamlessly connecting frontends to complex backend systems with clean data management layers.', accent: '#ff8c42' },
+              { title: 'Performance & Scale', desc: 'Optimizing rendering, code-splitting, and bundle size to keep apps fast under heavy load.', accent: '#ff6eb4' },
+            ].map((item) => (
+              <div key={item.title} className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ background: item.accent }} />
+                  <p className="text-sm font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>{item.title}</p>
+                </div>
+                <p className="text-[13px] leading-6 text-[var(--muted)] pl-3.5">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Currently at card ── */}
+        <div
+          className="glow-card relative flex flex-col justify-between p-7"
+          style={{ background: 'linear-gradient(135deg, rgba(162,89,255,0.04) 0%, rgba(13,13,31,0.9) 60%)' }}
+        >
+          <div className="absolute inset-x-0 top-0 h-0.5 rounded-t-xl"
+            style={{ background: 'linear-gradient(90deg, transparent, var(--accent-2), transparent)' }}
+          />
+          <div>
+            <div className="mb-4 flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--green)] opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--green)]" />
+              </span>
+              <p className="label-text">Currently at</p>
+            </div>
+            <p className="text-2xl font-extrabold leading-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
+              Science Olympiad<br />Foundation
+            </p>
+            <p className="mt-2 text-[13px] text-[var(--muted)]">Frontend Developer · Mar 2025 – Present</p>
+          </div>
+          <div className="mt-6 rounded-xl border border-[var(--accent-2)]/15 bg-[var(--accent-2-dim)] px-4 py-3">
+            <p className="text-[12px] font-medium text-[var(--accent-2)]" style={{ fontFamily: 'var(--font-display)' }}>
+              Building ERP systems for 2000+ users across finance, HR & operations
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Skills grid */}
+      <div className="mt-6" data-reveal data-reveal-delay="4">
+        <div className="mb-5 flex items-center justify-between">
           <p className="label-text">Core Skills</p>
-          <p
-            className="text-xs text-[var(--muted)]"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            12 — toolset
+          <p className="text-[11px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-display)' }}>
+            {skillsWithIcons.length} tools
           </p>
         </div>
-        <div className="flex flex-wrap gap-2.5">
-          {skills.map((skill) => (
-            <span
-              key={skill}
-              className="rounded-md border border-white/[0.08] bg-white/[0.025] px-5 py-2.5 text-sm text-[#b6b9c4] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)]/40 hover:bg-white/[0.06] hover:text-white"
-              style={{ fontFamily: 'var(--font-display)' }}
+        <div className="flex flex-wrap gap-2">
+          {skillsWithIcons.map((skill) => (
+            <button
+              key={skill.name}
+              className="skill-chip group"
+              style={{ '--skill-color': skill.color }}
             >
-              {skill}
-            </span>
+              <span style={{ color: skill.color, transition: 'color 0.2s' }}>{skill.icon}</span>
+              {skill.name}
+            </button>
           ))}
         </div>
       </div>
 
       {/* Stats row */}
       <div
-        className="mt-20 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5"
+        className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3"
         data-reveal
-        data-reveal-delay="4"
+        data-reveal-delay="5"
       >
         {stats.map((s) => (
-          <div
-            key={s.label}
-            className="modern-card group p-7 sm:p-8"
-          >
-            <div
-              className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${s.accent}`}
-            />
-            <p
-              className="stat-number text-5xl sm:text-6xl lg:text-7xl"
-            >
-              {s.value}
-            </p>
-            <p className="mt-4 label-text">{s.label}</p>
-          </div>
+          <AnimatedStatCard key={s.label} stat={s} />
         ))}
       </div>
     </section>

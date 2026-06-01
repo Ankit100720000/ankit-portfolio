@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react'
-import Button from '@/ui/Button'
-import SectionContainer from '@/ui/SectionContainer'
+import Button from '@/components/ui/Button'
+import SectionContainer from '@/components/ui/SectionContainer'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 
 function CTASection() {

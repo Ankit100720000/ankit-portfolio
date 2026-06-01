@@ -3,7 +3,7 @@ import { gsap } from '@/animations/gsap'
 import { valueHighlights } from '@/data/site'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
-import SectionContainer from '@/ui/SectionContainer'
+import SectionContainer from '@/components/ui/SectionContainer'
 
 const valueCardsLeft = [
   'Scalable ERP architecture for complex internal workflows',
