@@ -1,8 +1,8 @@
 import { useRef, useEffect } from 'react'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
-import { gsap, splitWordReveal, animateCounter } from '@/animations/gsap'
+import { gsap, splitTextLinesReveal, animateCounter } from '@/animations/gsap'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
-import { SectionConnector, SkillOrbitSvg } from '@/components/common/SvgDecorations'
+import { SkillOrbitSvg } from '@/components/common/SvgDecorations'
 import { Code2, Layers, Zap, Database, GitBranch, Globe, Package } from 'lucide-react'
 
 const skillsWithIcons = [
@@ -88,7 +88,9 @@ function AboutSection() {
   const prefersReducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
-    if (headingRef.current) splitWordReveal(headingRef.current, headingRef.current, 0.1)
+    if (headingRef.current) {
+      return splitTextLinesReveal(headingRef.current, headingRef.current)
+    }
   }, [])
 
   useEffect(() => {
@@ -96,7 +98,7 @@ function AboutSection() {
 
     const ctx = gsap.context(() => {
       gsap.to(document.documentElement, {
-        '--bg': '#16110e',
+        '--bg': '#180b02',
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 50%',
@@ -111,9 +113,8 @@ function AboutSection() {
   }, [prefersReducedMotion])
 
   return (
-    <section id="about" ref={sectionRef} className="section-block py-32">
-      <div className="h-rule mb-20" />
-      <SectionConnector color="#ff8709" />
+    <section id="about" ref={sectionRef} className="section-block pt-28 pb-40 md:pt-36 md:pb-52">
+
 
       {/* Section label + headings */}
       <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20 mb-16">
@@ -160,7 +161,7 @@ function AboutSection() {
         {/* ── Big "What I do" card — spans 2 cols on lg ── */}
         <div
           className="glow-card relative p-7 lg:col-span-2"
-          style={{ background: 'linear-gradient(135deg, rgba(0,245,212,0.04) 0%, rgba(13,13,31,0.9) 60%)' }}
+          style={{ background: 'linear-gradient(135deg, rgba(255,135,9,0.04) 0%, rgba(13,13,31,0.9) 60%)' }}
         >
           <div className="absolute inset-x-0 top-0 h-0.5 rounded-t-xl"
             style={{ background: 'linear-gradient(90deg, transparent, var(--accent), transparent)' }}
@@ -168,10 +169,10 @@ function AboutSection() {
           <p className="label-text mb-5">What I do</p>
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { title: 'ERP & Dashboards', desc: 'Building complex enterprise systems with clean data visualization and efficient UX patterns.', accent: '#00f5d4' },
-              { title: 'Modern UI Engineering', desc: 'Crafting pixel-perfect interfaces with smooth animations, responsive layouts, and accessibility.', accent: '#a259ff' },
-              { title: 'API Integration', desc: 'Seamlessly connecting frontends to complex backend systems with clean data management layers.', accent: '#ff8c42' },
-              { title: 'Performance & Scale', desc: 'Optimizing rendering, code-splitting, and bundle size to keep apps fast under heavy load.', accent: '#ff6eb4' },
+              { title: 'ERP & Dashboards', desc: 'Building complex enterprise systems with clean data visualization and efficient UX patterns.', accent: '#ff8709' },
+              { title: 'Modern UI Engineering', desc: 'Crafting pixel-perfect interfaces with smooth animations, responsive layouts, and accessibility.', accent: '#f7bdf8' },
+              { title: 'API Integration', desc: 'Seamlessly connecting frontends to complex backend systems with clean data management layers.', accent: '#ff5d73' },
+              { title: 'Performance & Scale', desc: 'Optimizing rendering, code-splitting, and bundle size to keep apps fast under heavy load.', accent: '#ffd166' },
             ].map((item) => (
               <div key={item.title} className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
@@ -187,7 +188,7 @@ function AboutSection() {
         {/* ── Currently at card ── */}
         <div
           className="glow-card relative flex flex-col justify-between p-7"
-          style={{ background: 'linear-gradient(135deg, rgba(162,89,255,0.04) 0%, rgba(13,13,31,0.9) 60%)' }}
+          style={{ background: 'linear-gradient(135deg, rgba(247,189,248,0.04) 0%, rgba(13,13,31,0.9) 60%)' }}
         >
           <div className="absolute inset-x-0 top-0 h-0.5 rounded-t-xl"
             style={{ background: 'linear-gradient(90deg, transparent, var(--accent-2), transparent)' }}

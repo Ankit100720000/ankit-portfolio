@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { contact } from '@/data/site'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
-import { gsap } from '@/animations/gsap'
+import { gsap, splitTextLinesReveal } from '@/animations/gsap'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import { Mail, FileText, ArrowUpRight, Send, CheckCircle2 } from 'lucide-react'
 
@@ -51,17 +51,24 @@ const contactLinks = [
 
 function ContactSection() {
   const sectionRef = useSectionReveal()
+  const headingRef = useRef(null)
   const [formState, setFormState] = useState({ name: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const prefersReducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
+    if (headingRef.current) {
+      return splitTextLinesReveal(headingRef.current, headingRef.current)
+    }
+  }, [])
+
+  useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion) return
 
     const ctx = gsap.context(() => {
       gsap.to(document.documentElement, {
-        '--bg': '#0e100f',
+        '--bg': '#0c0d12',
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 50%',
@@ -93,8 +100,8 @@ function ContactSection() {
   }
 
   return (
-    <section id="contact" ref={sectionRef} className="section-block py-32 pb-24">
-      <div className="h-rule mb-20" />
+    <section id="contact" ref={sectionRef} className="section-block pt-28 pb-40 md:pt-36 md:pb-52">
+
 
       {/* Ambient blobs */}
       <div className="pointer-events-none absolute inset-x-0 overflow-hidden" aria-hidden>
@@ -108,53 +115,33 @@ function ContactSection() {
         />
       </div>
 
-      <div className="grid gap-10 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_460px] lg:gap-12">
-
+      <div className="grid gap-10 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_460px] lg:gap-12 items-center">
+ 
         {/* Left — CTA panel */}
-        <div>
-          {/* Main CTA hero card */}
-          <div className="glow-card relative overflow-hidden p-8 sm:p-12 lg:p-14" data-reveal>
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-0.5 rounded-t-xl"
-              style={{ background: 'linear-gradient(90deg, transparent, var(--accent) 40%, var(--accent-2) 70%, transparent)' }}
-            />
-            <div
-              className="pointer-events-none absolute bottom-0 left-0 h-48 w-full"
-              style={{ background: 'linear-gradient(0deg, rgba(0,245,212,0.04), transparent)' }}
-            />
-
-            <div className="relative">
-              <p className="label-text mb-8">Let's work together</p>
-              <h2
-                className="display-heading text-balance leading-[0.9]"
-                style={{ fontSize: 'clamp(2.8rem, 8vw, 7rem)' }}
+        <div className="flex flex-col justify-center">
+          <div className="max-w-xl">
+            <p className="label-text mb-6">Let's work together</p>
+            <h2
+              ref={headingRef}
+              className="display-heading text-balance leading-[0.95]"
+              style={{ fontSize: 'clamp(2.5rem, 6.5vw, 5.5rem)', letterSpacing: '-0.03em' }}
+            >
+              Let's build something <span className="text-gradient-cool">together.</span>
+            </h2>
+ 
+            <div className="mt-6 flex items-center gap-3">
+              <span className="accent-dot" />
+              <p
+                className="text-sm text-[var(--muted-2)]"
+                style={{ fontFamily: 'var(--font-display)' }}
               >
-                Let's build
-                <br />
-                something
-                <br />
-                <span className="text-gradient-cool">together.</span>
-              </h2>
-
-              <div className="mt-10 flex items-center gap-3">
-                <span className="accent-dot" />
-                <p
-                  className="text-sm text-[var(--muted-2)]"
-                  style={{ fontFamily: 'var(--font-display)' }}
-                >
-                  Available for new opportunities · Q2 2026
-                </p>
-              </div>
+                Available for new opportunities · Q2 2026
+              </p>
             </div>
-
-            {/* Corner glow */}
-            <div
-              className="pointer-events-none absolute right-0 top-0 h-48 w-48 opacity-30 rounded-full"
-              style={{ background: 'radial-gradient(circle, var(--accent-2) 0%, transparent 70%)', filter: 'blur(60px)' }}
-            />
           </div>
-
-          {/* Contact link cards */}
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+ 
+          {/* Contact link list */}
+          <div className="mt-10 flex flex-col gap-3 max-w-xl">
             {contactLinks.map((item, index) => (
               <a
                 key={item.label}
@@ -163,61 +150,60 @@ function ContactSection() {
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noreferrer' : undefined}
                 download={item.download}
-                className="glow-card group relative flex flex-col justify-between p-5 transition-all duration-300 hover:-translate-y-1"
+                className="group relative flex items-center justify-between p-4 rounded-2xl border transition-all duration-300 hover:scale-[1.01] hover:border-[var(--item-accent)] overflow-hidden"
+                style={{
+                  background: 'rgba(255,255,255,0.015)',
+                  borderColor: 'rgba(255,255,255,0.04)',
+                  '--item-accent': item.accent,
+                }}
                 data-reveal
                 data-reveal-delay={String(index + 1)}
               >
-                <div className="absolute inset-x-0 top-0 h-0.5 rounded-t-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                  style={{ background: `linear-gradient(90deg, transparent, ${item.accent}, transparent)` }}
-                />
-
-                {/* Icon */}
-                <div
-                  className="mb-8 flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-300"
-                  style={{
-                    borderColor: item.border,
-                    background: item.dim,
-                    color: item.accent,
-                  }}
-                >
-                  {item.icon}
-                </div>
-
-                <div>
-                  <span
-                    className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--muted)]"
-                    style={{ fontFamily: 'var(--font-display)' }}
+                <div className="flex items-center gap-4 z-10">
+                  {/* Icon */}
+                  <div
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-all duration-300 group-hover:scale-105"
+                    style={{
+                      borderColor: item.border,
+                      background: item.dim,
+                      color: item.accent,
+                    }}
                   >
-                    {item.label}
-                  </span>
-                  <div className="mt-1.5 flex items-end justify-between gap-3">
+                    {item.icon}
+                  </div>
+                  <div>
                     <span
-                      className="text-sm font-semibold text-white transition-colors duration-200 group-hover:text-[var(--item-accent)]"
-                      style={{ fontFamily: 'var(--font-display)', '--item-accent': item.accent }}
+                      className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--muted)]"
+                      style={{ fontFamily: 'var(--font-display)' }}
                     >
-                      {item.value}
+                      {item.label}
                     </span>
-                    <ArrowUpRight
-                      size={15}
-                      className="shrink-0 text-[var(--muted)] transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      style={{ '--hover-color': item.accent }}
-                    />
+                    <div className="text-sm font-semibold text-white transition-colors duration-200 group-hover:text-[var(--item-accent)]"
+                      style={{ fontFamily: 'var(--font-display)', '--item-accent': item.accent }}>
+                      {item.value}
+                    </div>
                   </div>
                 </div>
-
-                {/* Hover corner glow */}
+ 
+                <ArrowUpRight
+                  size={16}
+                  className="z-10 text-[var(--muted)] transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--item-accent)]"
+                  style={{ '--item-accent': item.accent }}
+                />
+ 
+                {/* Hover back glow */}
                 <div
-                  className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  style={{ background: `radial-gradient(50% 40% at 50% 100%, ${item.glow}, transparent)` }}
+                  className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  style={{ background: `radial-gradient(circle at 20% 50%, ${item.glow} 0%, transparent 65%)` }}
                 />
               </a>
             ))}
           </div>
         </div>
-
+ 
         {/* Right — Inline contact form */}
-        <div data-reveal data-reveal-delay="2">
-          <div className="glow-card relative h-full p-7 sm:p-8">
+        <div data-reveal data-reveal-delay="2" className="h-fit">
+          <div className="glow-card relative h-fit p-7 sm:p-8">
             <div className="pointer-events-none absolute inset-x-0 top-0 h-0.5 rounded-t-xl"
               style={{ background: 'linear-gradient(90deg, transparent, var(--accent-2), transparent)' }}
             />

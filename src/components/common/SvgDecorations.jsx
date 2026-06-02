@@ -188,9 +188,9 @@ export function TimelineSvgLine({ height = 400 }) {
       >
         <defs>
           <linearGradient id="timeline-line-grad" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
-            <stop offset="0%" stopColor="#00f5d4" />
-            <stop offset="60%" stopColor="#a259ff" />
-            <stop offset="100%" stopColor="rgba(162,89,255,0)" />
+            <stop offset="0%" stopColor="#ff8709" />
+            <stop offset="60%" stopColor="#f7bdf8" />
+            <stop offset="100%" stopColor="rgba(247,189,248,0)" />
           </linearGradient>
         </defs>
         <path
@@ -200,7 +200,7 @@ export function TimelineSvgLine({ height = 400 }) {
           stroke="url(#timeline-line-grad)"
           strokeWidth="2"
           opacity="0.8"
-          style={{ filter: 'drop-shadow(0 0 4px rgba(0,245,212,0.5))' }}
+          style={{ filter: 'drop-shadow(0 0 4px rgba(255,135,9,0.4))' }}
         />
       </svg>
     </div>
@@ -208,7 +208,7 @@ export function TimelineSvgLine({ height = 400 }) {
 }
 
 /* ─── Section connector SVG ──────────────────────────────── */
-export function SectionConnector({ color = '#00f5d4' }) {
+export function SectionConnector({ color = '#ff8709' }) {
   const pathRef = useRef(null)
   const wrapRef = useRef(null)
 

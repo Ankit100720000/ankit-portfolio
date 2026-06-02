@@ -82,15 +82,9 @@ function Navbar() {
             className="flex items-center gap-2.5 group"
             aria-label="Ankit Maurya - Home"
           >
+
             <span
-              className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--accent)]/30 bg-[var(--accent-dim)] text-[var(--accent)] text-sm font-extrabold transition-all duration-300 group-hover:border-[var(--accent)]/60 group-hover:shadow-[0_0_20px_var(--accent-glow)]"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              AM
-              <span className="absolute inset-0 rounded-xl bg-[var(--accent)] opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-10" />
-            </span>
-            <span
-              className="text-xl font-extrabold text-white tracking-tight transition-colors duration-300 group-hover:text-[var(--accent)]"
+              className="text-3xl font-bold text-white tracking-tight transition-colors duration-300 group-hover:text-[var(--accent)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               Ankit<span className="text-[var(--accent)]">.</span>

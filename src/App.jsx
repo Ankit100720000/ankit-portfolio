@@ -8,6 +8,7 @@ import PremiumBackground from '@/components/common/PremiumBackground'
 import ScrollProgress from '@/components/common/ScrollProgress'
 import CommandPalette from '@/components/common/CommandPalette'
 import HeroSection from '@/sections/Hero/HeroSection'
+import Marquee from '@/components/common/Marquee'
 
 const AboutSection = lazy(() => import('@/sections/About/AboutSection'))
 const ProjectsSection = lazy(() => import('@/sections/Projects/ProjectsSection'))
@@ -37,8 +38,8 @@ function App() {
         <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <defs>
             <linearGradient id="page-trans-grad" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stopColor="rgba(0, 245, 212, 0.98)" />
-              <stop offset="100%" stopColor="rgba(162, 89, 255, 0.98)" />
+              <stop offset="0%" stopColor="rgba(255, 135, 9, 0.98)" />
+              <stop offset="100%" stopColor="rgba(247, 189, 248, 0.98)" />
             </linearGradient>
           </defs>
           <path className="page-transition-path" fill="url(#page-trans-grad)" d="M 0 100 V 100 Q 50 100 100 100 V 100 z" />
@@ -53,17 +54,33 @@ function App() {
         <main className="page-shell">
           <HeroSection />
 
+          <div className="py-24 md:py-32">
+            <Marquee items={['React Architecture', 'ERP Workflows', 'GSAP Motion Design', 'Performance Tuning', 'UI Engineering', 'API Integrations']} />
+          </div>
+
           <Suspense fallback={null}>
             <AboutSection />
           </Suspense>
+
+          <div className="section-block py-24 md:py-32">
+            <div className="h-rule" />
+          </div>
 
           <Suspense fallback={null}>
             <ProjectsSection />
           </Suspense>
 
+          <div className="py-24 md:py-32">
+            <Marquee items={['Clean Code', 'Scalable Architecture', 'Enterprise UX', 'Interactive Grids', 'Tailwind Styling', 'Product Minded']} />
+          </div>
+
           <Suspense fallback={null}>
             <ExperienceSection />
           </Suspense>
+
+          <div className="section-block py-24 md:py-32">
+            <div className="h-rule" />
+          </div>
 
           <Suspense fallback={null}>
             <ContactSection />
@@ -73,7 +90,7 @@ function App() {
         {/* Footer */}
         <footer
           className="section-block flex flex-col items-start justify-between gap-5 py-10 sm:flex-row sm:items-center"
-          style={{ borderTop: '1px solid rgba(0,245,212,0.08)' }}
+          style={{ borderTop: '1px solid var(--border)' }}
         >
           <div className="flex items-center gap-3">
             {/* Logo mark */}

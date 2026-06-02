@@ -1,9 +1,9 @@
 import { useRef, useEffect } from 'react'
 import { experience } from '@/data/site'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
-import { gsap, splitWordReveal } from '@/animations/gsap'
+import { gsap, splitTextLinesReveal } from '@/animations/gsap'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
-import { TimelineSvgLine, SectionConnector } from '@/components/common/SvgDecorations'
+import { TimelineSvgLine } from '@/components/common/SvgDecorations'
 import { Briefcase, Calendar } from 'lucide-react'
 
 const expPalettes = [
@@ -28,7 +28,7 @@ function ExperienceSection() {
 
   useEffect(() => {
     if (headingRef.current) {
-      splitWordReveal(headingRef.current, headingRef.current, 0.1)
+      return splitTextLinesReveal(headingRef.current, headingRef.current)
     }
   }, [])
 
@@ -37,7 +37,7 @@ function ExperienceSection() {
 
     const ctx = gsap.context(() => {
       gsap.to(document.documentElement, {
-        '--bg': '#171212',
+        '--bg': '#18080c',
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 50%',
@@ -52,10 +52,7 @@ function ExperienceSection() {
   }, [prefersReducedMotion])
 
   return (
-    <section id="experience" ref={sectionRef} className="section-block py-32">
-      <div className="h-rule mb-20" />
-
-      <SectionConnector color="#f7bdf8" />
+    <section id="experience" ref={sectionRef} className="section-block pt-28 pb-40 md:pt-36 md:pb-52">
 
       <div className="mb-16 flex items-end justify-between gap-6">
         <div>

@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -220,24 +219,24 @@ canvas { touch-action: none; }
   .section-heading {
     font-family: var(--font-display);
     @apply font-extrabold leading-[1.05] text-white;
-    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 4vw, 3.25rem);
     letter-spacing: -0.02em;
   }
 
   .label-text {
     font-family: var(--font-display);
-    @apply text-[11px] font-semibold uppercase tracking-[0.24em];
+    @apply text-xs font-semibold uppercase tracking-[0.24em];
     color: var(--muted-2);
   }
 
   .body-lg {
     font-family: var(--font-body);
-    @apply text-lg leading-8 text-[#c0c0d8] sm:text-xl;
+    @apply text-lg leading-relaxed text-[#c0c0d8] sm:text-xl sm:leading-relaxed;
   }
 
   .body-md {
     font-family: var(--font-body);
-    @apply text-base leading-8 text-[#9090b0];
+    @apply text-[15px] sm:text-base leading-relaxed text-[#9090b0];
   }
 
   /* Section wrapper */
@@ -566,7 +565,7 @@ canvas { touch-action: none; }
   .form-input:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px var(--accent-dim);
-    background: rgba(0, 245, 212, 0.02);
+    background: rgba(255, 135, 9, 0.02);
   }
 
   /* Mobile drawer */
@@ -637,7 +636,7 @@ canvas { touch-action: none; }
   }
   .hero-stat-value {
     font-family: var(--font-display);
-    @apply text-3xl font-extrabold;
+    @apply text-3xl sm:text-4xl font-extrabold;
     letter-spacing: -0.02em;
     background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
     -webkit-background-clip: text;
@@ -645,7 +644,7 @@ canvas { touch-action: none; }
     background-clip: text;
   }
   .hero-stat-label {
-    @apply text-[11px] font-medium uppercase tracking-[0.16em];
+    @apply text-xs font-semibold uppercase tracking-[0.18em];
     color: var(--muted);
     font-family: var(--font-display);
   }
@@ -657,6 +656,31 @@ canvas { touch-action: none; }
     border-color: rgba(255,135,9,0.25);
     background: rgba(255,135,9,0.06);
     color: var(--accent);
+  }
+
+  /* Section kicker label */
+  .section-kicker {
+    font-family: var(--font-display);
+    @apply inline-block text-xs font-semibold uppercase tracking-[0.24em];
+    color: var(--accent);
+  }
+
+  /* Section title */
+  .section-title {
+    font-family: var(--font-display);
+    @apply text-3xl font-extrabold leading-[1.1] text-white sm:text-4xl;
+    letter-spacing: -0.02em;
+  }
+
+  /* Body copy */
+  .body-copy {
+    font-family: var(--font-body);
+    @apply text-sm sm:text-base md:text-lg leading-relaxed text-[var(--muted)];
+  }
+
+  /* Section padding */
+  .section-padding {
+    @apply section-block py-16 md:py-24;
   }
 }
 
@@ -908,6 +932,7 @@ canvas { touch-action: none; }
   will-change: transform, opacity;
   transform-style: preserve-3d;
   perspective: 1000px;
+  border-radius: 50%;
 }
 .proj-h-card img {
   backface-visibility: hidden;
@@ -927,19 +952,162 @@ canvas { touch-action: none; }
   overflow: hidden;
 }
 
-/* Subtle inner glow on card hover */
-.proj-h-card::after {
-  content: '';
+
+
+/* ─── Gravity Ball ───────────────────────────────── */
+.gravity-ball {
+  --ball-glow: 0.2;
+  --ball-scale: 1;
+}
+
+.gravity-ball__core {
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+  inset: 4px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(255, 200, 130, 0.95),
+    var(--accent) 40%,
+    rgba(255, 93, 115, 0.6) 75%,
+    rgba(247, 189, 248, 0.3) 100%
+  );
+  box-shadow:
+    0 0 18px 4px rgba(255, 135, 9, 0.4),
+    0 0 40px 8px rgba(255, 135, 9, 0.15),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.25),
+    inset 0 2px 6px rgba(255, 255, 255, 0.35);
+  transition: box-shadow 0.15s ease;
+}
+
+.gravity-ball--dragging .gravity-ball__core {
+  box-shadow:
+    0 0 28px 8px rgba(255, 135, 9, 0.55),
+    0 0 60px 16px rgba(255, 135, 9, 0.2),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.25),
+    inset 0 2px 6px rgba(255, 255, 255, 0.45);
+}
+
+.gravity-ball__ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 135, 9, 0.25);
+  animation: glow-pulse 2.5s ease-in-out infinite;
   pointer-events: none;
 }
-.proj-h-card:hover::after {
-  opacity: 1;
+
+.gravity-ball--dragging .gravity-ball__ring {
+  border-color: rgba(255, 135, 9, 0.5);
+  animation: none;
+}
+
+.gravity-ball__trail {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 135, 9, calc(var(--ball-glow) * 0.5)) 0%,
+    rgba(247, 189, 248, calc(var(--ball-glow) * 0.15)) 40%,
+    transparent 70%
+  );
+  transform: scale(var(--ball-scale));
+  pointer-events: none;
+  transition: transform 0.1s ease;
+}
+
+/* ─── Skill Progress Bars ────────────────────────── */
+.skill-bar-row {
+  position: relative;
+}
+
+.skill-progress-track {
+  position: relative;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.skill-progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--bar-accent, var(--accent)),
+    color-mix(in srgb, var(--bar-accent, var(--accent)) 60%, #fff)
+  );
+  box-shadow: 0 0 12px color-mix(in srgb, var(--bar-accent, var(--accent)) 40%, transparent);
+  position: relative;
+  transition: width 0s; /* GSAP controls the width */
+}
+
+.skill-progress-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bar-accent, var(--accent));
+  box-shadow: 0 0 8px var(--bar-accent, var(--accent)), 0 0 20px color-mix(in srgb, var(--bar-accent, var(--accent)) 30%, transparent);
+  opacity: 0.9;
+}
+
+.skill-bar-row:hover .skill-progress-fill::after {
+  animation: pulse-soft 1.5s ease-in-out infinite;
+}
+
+/* Skills Glass Card */
+.skill-glass-card {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.skill-glass-card:hover {
+  border-color: rgba(255, 135, 9, 0.2) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 135, 9, 0.08) inset,
+    0 20px 60px -20px rgba(255, 135, 9, 0.1);
+}
+
+/* ─── Project neighbor reveal ────────────────────── */
+.proj-neighbor-active .proj-h-card-inner {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.proj-neighbor-active::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 135, 9, 0.25);
+  animation: neighbor-ring-pulse 1.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 20;
+}
+
+@keyframes neighbor-ring-pulse {
+  0%, 100% { border-color: rgba(255, 135, 9, 0.25); }
+  50% { border-color: rgba(255, 135, 9, 0.45); }
+}
+
+/* Tech badges styling and hover */
+.proj-h-card-inner .tech-badge {
+  border-color: var(--card-border) !important;
+  background: var(--card-dim) !important;
+  color: var(--card-accent) !important;
+  transition: all 0.3s ease;
+}
+.proj-h-card-inner:hover .tech-badge {
+  background: var(--card-border) !important;
+  color: #fff !important;
+  border-color: var(--card-accent) !important;
+  box-shadow: 0 0 10px var(--card-dim);
 }
 
 

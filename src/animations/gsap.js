@@ -96,6 +96,140 @@ export function splitCharReveal(element, trigger, delay = 0) {
   })
 }
 
+/* ─── Line-by-line Scroll Scrub Text Reveal ───────────── */
+export function splitTextLinesReveal(element, trigger) {
+  if (!element) return null
+  if (element.getAttribute('data-split-text') === 'true') {
+    return null
+  }
+  element.setAttribute('data-split-text', 'true')
+
+  const originalHTML = element.innerHTML
+  const originalText = element.innerText
+  let lastWidth = window.innerWidth
+  let killTimeline = null
+  let isMounted = true
+
+  const doSplit = () => {
+    if (!isMounted) return
+
+    if (killTimeline) {
+      if (killTimeline.scrollTrigger) killTimeline.scrollTrigger.kill()
+      killTimeline.kill()
+      killTimeline = null
+    }
+
+    // Reset element to its original HTML state before walking tree
+    element.innerHTML = originalHTML
+
+    // Walk tree to wrap words while preserving parent classes/styles
+    const walk = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false)
+    const nodes = []
+    let node
+    while ((node = walk.nextNode())) nodes.push(node)
+
+    nodes.forEach(n => {
+      if (!n.nodeValue.trim()) return
+      const parent = n.parentNode
+      const isRoot = parent === element
+      const parentClass = !isRoot && parent.className ? parent.className : ''
+      const parentStyle = !isRoot && parent.getAttribute('style') ? parent.getAttribute('style') : ''
+      
+      const words = n.nodeValue.split(/(\s+)/)
+      const frag = document.createDocumentFragment()
+      
+      words.forEach(w => {
+        if (w.trim()) {
+          const span = document.createElement('span')
+          span.className = `temp-word ${parentClass}`.trim()
+          span.setAttribute('style', `display: inline-block; ${parentStyle}`)
+          span.textContent = w
+          frag.appendChild(span)
+        } else {
+          frag.appendChild(document.createTextNode(w))
+        }
+      })
+      parent.replaceChild(frag, n)
+    })
+
+    // Wait a frame for browser to render spans and calculate offsets
+    requestAnimationFrame(() => {
+      if (!isMounted) return
+      const wordSpans = element.querySelectorAll('.temp-word')
+      if (!wordSpans.length) return
+
+      // Group words into lines by offsetTop
+      const linesMap = new Map()
+      wordSpans.forEach(span => {
+        const top = span.offsetTop
+        if (!linesMap.has(top)) {
+          linesMap.set(top, [])
+        }
+        linesMap.get(top).push(span.outerHTML)
+      })
+
+      // Re-build html: wrap each line in a container with overflow hidden (mask)
+      const linesHTML = Array.from(linesMap.values()).map(lineWords => {
+        const lineText = lineWords.join(' ')
+        return `<div class="line-wrap" style="overflow: hidden; display: block; padding-bottom: 0.15em; margin-bottom: -0.15em;"><div class="line-inner" style="display: block; will-change: transform; white-space: nowrap;">${lineText}</div></div>`
+      }).join('\n')
+
+      element.innerHTML = linesHTML
+
+      const lineInners = element.querySelectorAll('.line-inner')
+      
+      // Initialize state
+      gsap.set(lineInners, { yPercent: 120 })
+
+      // Create scroll-scrub timeline
+      killTimeline = gsap.to(lineInners, {
+        yPercent: 0,
+        stagger: 0.1,
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: trigger || element,
+          scrub: 1,
+          start: "top 85%",
+          end: "top 55%",
+          invalidateOnRefresh: true,
+        }
+      })
+
+      ScrollTrigger.refresh()
+    })
+  }
+
+  // Run splitting after fonts load or instantly if already loaded
+  if (document.fonts) {
+    document.fonts.ready.then(() => {
+      if (isMounted) doSplit()
+    })
+  } else {
+    doSplit()
+  }
+
+  const handleResize = () => {
+    if (window.innerWidth !== lastWidth) {
+      lastWidth = window.innerWidth
+      doSplit()
+    }
+  }
+
+  window.addEventListener('resize', handleResize)
+
+  // Return clean-up function
+  return () => {
+    isMounted = false
+    window.removeEventListener('resize', handleResize)
+    if (killTimeline) {
+      if (killTimeline.scrollTrigger) killTimeline.scrollTrigger.kill()
+      killTimeline.kill()
+    }
+    element.removeAttribute('data-split-text')
+    element.innerHTML = originalHTML
+  }
+}
+
 /* ─── Animated counter ───────────────────────────────── */
 export function animateCounter(element, target, suffix = '', duration = 1.6) {
   if (!element) return null

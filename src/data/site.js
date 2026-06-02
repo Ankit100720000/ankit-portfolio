@@ -399,6 +399,35 @@ export const projects = [
   },
 ]
 
+export const skillGroups = [
+  {
+    title: 'Frontend Core',
+    description: 'Core technologies for building modern, performant web applications.',
+    accent: 'from-[#ff8709] to-[#ff5d73]',
+    items: [
+      { name: 'React', level: 92 },
+      { name: 'JavaScript (ES6+)', level: 90 },
+      { name: 'TypeScript', level: 78 },
+      { name: 'HTML5 & CSS3', level: 95 },
+      { name: 'Tailwind CSS', level: 88 },
+      { name: 'Redux Toolkit', level: 80 },
+    ],
+  },
+  {
+    title: 'Tools & Motion',
+    description: 'Animation, build tools, and developer workflow optimization.',
+    accent: 'from-[#f7bdf8] to-[#ffd166]',
+    items: [
+      { name: 'GSAP', level: 85 },
+      { name: 'Framer Motion', level: 75 },
+      { name: 'REST APIs', level: 90 },
+      { name: 'Git & GitHub', level: 85 },
+      { name: 'Vite', level: 82 },
+      { name: 'Figma', level: 70 },
+    ],
+  },
+]
+
 export const experience = [
   {
     title: 'Frontend Developer',
