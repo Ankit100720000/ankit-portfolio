@@ -18,10 +18,10 @@ const contactLinks = [
     value: contact.email,
     href: `mailto:${contact.email}`,
     icon: <Mail size={18} />,
-    accent: '#ff8709',
-    glow: 'rgba(255,135,9,0.15)',
-    dim: 'rgba(255,135,9,0.06)',
-    border: 'rgba(255,135,9,0.2)',
+    accent: '#EB7E1C',
+    glow: 'rgba(235,126,28,0.15)',
+    dim: 'rgba(235,126,28,0.06)',
+    border: 'rgba(235,126,28,0.2)',
   },
   {
     id: 'contact-linkedin',
@@ -30,10 +30,10 @@ const contactLinks = [
     href: contact.linkedin,
     external: true,
     icon: <LinkedinIcon />,
-    accent: '#f7bdf8',
-    glow: 'rgba(247,189,248,0.15)',
-    dim: 'rgba(247,189,248,0.06)',
-    border: 'rgba(247,189,248,0.2)',
+    accent: '#00ACDC',
+    glow: 'rgba(0, 172, 220, 0.15)',
+    dim: 'rgba(0, 172, 220, 0.06)',
+    border: 'rgba(0, 172, 220, 0.2)',
   },
   {
     id: 'contact-resume',
@@ -42,10 +42,10 @@ const contactLinks = [
     href: contact.resume,
     download: 'Ankit-Maurya-Resume.txt',
     icon: <FileText size={18} />,
-    accent: '#ff5d73',
-    glow: 'rgba(255,93,115,0.15)',
-    dim: 'rgba(255,93,115,0.06)',
-    border: 'rgba(255,93,115,0.2)',
+    accent: '#EB7E1C',
+    glow: 'rgba(235,126,28,0.15)',
+    dim: 'rgba(235,126,28,0.06)',
+    border: 'rgba(235,126,28,0.2)',
   },
 ]
 
@@ -63,24 +63,7 @@ function ContactSection() {
     }
   }, [])
 
-  useEffect(() => {
-    if (!sectionRef.current || prefersReducedMotion) return
 
-    const ctx = gsap.context(() => {
-      gsap.to(document.documentElement, {
-        '--bg': '#0c0d12',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 50%',
-          end: 'bottom 50%',
-          scrub: 1.2,
-          invalidateOnRefresh: true,
-        }
-      })
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [prefersReducedMotion])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -100,7 +83,7 @@ function ContactSection() {
   }
 
   return (
-    <section id="contact" ref={sectionRef} className="section-block pt-28 pb-40 md:pt-36 md:pb-52">
+    <section id="contact" ref={sectionRef} className="section-block pt-20 pb-24 md:pt-28 md:pb-32">
 
 
       {/* Ambient blobs */}

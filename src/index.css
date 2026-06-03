@@ -11,33 +11,46 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* Backgrounds */
-  --bg: #0e100f;
-  --bg-elev: #141716;
-  --bg-card: rgba(20, 23, 22, 0.75);
+  --bg: #020a0e;
+  --bg-elev: #061218;
+  --bg-card: rgba(6, 18, 24, 0.75);
   --bg-glass: rgba(255, 255, 255, 0.03);
 
   /* Foreground */
   --fg: #f0f0ff;
-  --muted: #8888aa;
-  --muted-2: #c0c0d8;
+  --muted: #88a6b0;
+  --muted-2: #c0d8df;
 
   /* Borders */
-  --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.18);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
 
-  /* Primary accent — vivid orange */
-  --accent: #ff8709;
-  --accent-glow: rgba(255, 135, 9, 0.25);
-  --accent-dim: rgba(255, 135, 9, 0.12);
+  /* Primary accent — warm orange */
+  --accent: #EB7E1C;
+  --accent-glow: rgba(235, 126, 28, 0.25);
+  --accent-dim: rgba(235, 126, 28, 0.12);
 
-  /* Secondary accent — lavender pink */
-  --accent-2: #f7bdf8;
-  --accent-2-glow: rgba(247, 189, 248, 0.25);
-  --accent-2-dim: rgba(247, 189, 248, 0.1);
+  /* Secondary accent — sky blue */
+  --accent-2: #00ACDC;
+  --accent-2-glow: rgba(0, 172, 220, 0.25);
+  --accent-2-dim: rgba(0, 172, 220, 0.1);
 
-  /* Warm accent (kept from original) */
-  --orange: #ff8c42;
-  --orange-dim: rgba(255, 140, 66, 0.12);
+  /* Warm accent */
+  --orange: #EB7E1C;
+  --orange-dim: rgba(235, 126, 28, 0.12);
+
+  /* Custom colors from requested palette */
+  --accent-teal: #00485C;
+  --accent-teal-glow: rgba(0, 72, 92, 0.25);
+  --accent-teal-dim: rgba(0, 72, 92, 0.12);
+
+  --accent-red: #D24141;
+  --accent-red-glow: rgba(210, 65, 65, 0.25);
+  --accent-red-dim: rgba(210, 65, 65, 0.12);
+
+  --accent-blue: #00ACDC;
+  --accent-blue-glow: rgba(0, 172, 220, 0.25);
+  --accent-blue-dim: rgba(0, 172, 220, 0.12);
 
   /* Status colors */
   --green: #00e5a0;
@@ -90,6 +103,12 @@
   0%   { transform: translate3d(0, 0, 0) scale(1); }
   50%  { transform: translate3d(2%, -2%, 0) scale(1.05); }
   100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes pulse-soft {
@@ -732,44 +751,34 @@ canvas { touch-action: none; }
 .premium-bg__base {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(255, 135, 9, 0.06), transparent 60%),
-    radial-gradient(900px 600px at 90% 10%, rgba(247, 189, 248, 0.07), transparent 62%),
-    radial-gradient(800px 600px at 50% 105%, rgba(255, 135, 9, 0.04), transparent 65%),
-    radial-gradient(600px 400px at var(--cursor-x, 50vw) var(--cursor-y, 20vh), rgba(255, 255, 255, 0.035), transparent 60%);
+  background: linear-gradient(135deg, 
+    #011e26 0%,
+    #001822 40%,
+    #170c02 100%
+  );
+  background-size: 300% 300%;
+  opacity: 0.28;
 }
 
-.premium-bg__mesh {
-  position: absolute;
-  inset: -18%;
-  background:
-    radial-gradient(500px 380px at calc(var(--cursor-x, 50vw) * 1) calc(var(--cursor-y, 20vh) * 1), rgba(255, 135, 9, 0.04), transparent 62%),
-    radial-gradient(520px 420px at calc(100% - (var(--cursor-x, 50vw) * 0.6)) calc(var(--cursor-y, 20vh) * 0.8), rgba(247, 189, 248, 0.04), transparent 64%),
-    radial-gradient(560px 440px at calc(var(--cursor-x, 50vw) * 0.7) calc(100% - (var(--cursor-y, 20vh) * 0.65)), rgba(255, 135, 9, 0.025), transparent 66%);
-  filter: blur(46px) saturate(115%);
-  opacity: 0.9;
-  transform: translateZ(0);
-}
-
-.premium-bg[data-reduced-motion="false"] .premium-bg__mesh {
-  animation: aurora-drift 18s ease-in-out infinite;
+.premium-bg[data-reduced-motion="false"] .premium-bg__base {
+  animation: gradient-shift 25s ease infinite;
 }
 
 .premium-bg__grid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255, 135, 9, 0.06) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(0, 172, 220, 0.07) 1px, transparent 1px);
   background-size: 40px 40px;
-  opacity: 0.2;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 35%, #000 25%, transparent 78%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 35%, #000 25%, transparent 78%);
+  opacity: 0.25;
+  mask-image: radial-gradient(ellipse 85% 65% at 50% 35%, #000 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 35%, #000 20%, transparent 80%);
 }
 
 .premium-bg__vignette {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at center, transparent 0%, rgba(14, 16, 15, 0.5) 70%, rgba(14, 16, 15, 0.95) 100%);
+    radial-gradient(ellipse at center, transparent 0%, rgba(2, 10, 14, 0.4) 65%, rgba(2, 10, 14, 0.95) 100%);
 }
 
 /* ─── Reduced motion ─────────────────────────────── */

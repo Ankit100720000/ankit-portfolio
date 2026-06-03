@@ -6,24 +6,24 @@ import { SkillOrbitSvg } from '@/components/common/SvgDecorations'
 import { Code2, Layers, Zap, Database, GitBranch, Globe, Package } from 'lucide-react'
 
 const skillsWithIcons = [
-  { name: 'React', icon: <Code2 size={13} />, color: '#ff8709' },
-  { name: 'JavaScript', icon: <Zap size={13} />, color: '#f7bdf8' },
-  { name: 'TypeScript', icon: <Code2 size={13} />, color: '#ff5d73' },
-  { name: 'HTML5 & CSS3', icon: <Globe size={13} />, color: '#ffd166' },
-  { name: 'Tailwind CSS', icon: <Layers size={13} />, color: '#ff8709' },
-  { name: 'GSAP', icon: <Zap size={13} />, color: '#f7bdf8' },
-  { name: 'Framer Motion', icon: <Zap size={13} />, color: '#ff5d73' },
-  { name: 'REST APIs', icon: <Database size={13} />, color: '#ffd166' },
-  { name: 'Redux Toolkit', icon: <Package size={13} />, color: '#ff8709' },
-  { name: 'Git & GitHub', icon: <GitBranch size={13} />, color: '#ffd166' },
-  { name: 'Vite', icon: <Zap size={13} />, color: '#f7bdf8' },
-  { name: 'Figma', icon: <Layers size={13} />, color: '#ff5d73' },
+  { name: 'React', icon: <Code2 size={13} /> },
+  { name: 'JavaScript', icon: <Zap size={13} /> },
+  { name: 'TypeScript', icon: <Code2 size={13} /> },
+  { name: 'HTML5 & CSS3', icon: <Globe size={13} /> },
+  { name: 'Tailwind CSS', icon: <Layers size={13} /> },
+  { name: 'GSAP', icon: <Zap size={13} /> },
+  { name: 'Framer Motion', icon: <Zap size={13} /> },
+  { name: 'REST APIs', icon: <Database size={13} /> },
+  { name: 'Redux Toolkit', icon: <Package size={13} /> },
+  { name: 'Git & GitHub', icon: <GitBranch size={13} /> },
+  { name: 'Vite', icon: <Zap size={13} /> },
+  { name: 'Figma', icon: <Layers size={13} /> },
 ]
 
 const stats = [
-  { value: '3+', label: 'Years of experience', accent: '#ff8709', glow: 'rgba(255,135,9,0.15)', border: 'rgba(255,135,9,0.2)' },
-  { value: '45+', label: 'Projects delivered', accent: '#f7bdf8', glow: 'rgba(247,189,248,0.15)', border: 'rgba(247,189,248,0.2)' },
-  { value: '2K+', label: 'Users served', accent: '#ff5d73', glow: 'rgba(255,93,115,0.15)', border: 'rgba(255,93,115,0.2)' },
+  { value: '3+', label: 'Years of experience', accent: 'var(--accent)', glow: 'var(--accent-glow)', border: 'var(--border)' },
+  { value: '45+', label: 'Projects delivered', accent: 'var(--accent)', glow: 'var(--accent-glow)', border: 'var(--border)' },
+  { value: '2K+', label: 'Users served', accent: 'var(--accent)', glow: 'var(--accent-glow)', border: 'var(--border)' },
 ]
 
 function AnimatedStatCard({ stat }) {
@@ -54,7 +54,7 @@ function AnimatedStatCard({ stat }) {
 
       <p
         ref={numRef}
-        className="text-5xl font-extrabold sm:text-6xl lg:text-7xl"
+        className="text-4xl font-extrabold sm:text-5xl"
         style={{
           fontFamily: 'var(--font-display)',
           letterSpacing: '-0.03em',
@@ -93,27 +93,10 @@ function AboutSection() {
     }
   }, [])
 
-  useEffect(() => {
-    if (!sectionRef.current || prefersReducedMotion) return
 
-    const ctx = gsap.context(() => {
-      gsap.to(document.documentElement, {
-        '--bg': '#180b02',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 50%',
-          end: 'bottom 50%',
-          scrub: 1.2,
-          invalidateOnRefresh: true,
-        }
-      })
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [prefersReducedMotion])
 
   return (
-    <section id="about" ref={sectionRef} className="section-block pt-28 pb-40 md:pt-36 md:pb-52">
+    <section id="about" ref={sectionRef} className="section-block pt-20 pb-24 md:pt-28 md:pb-32">
 
 
       {/* Section label + headings */}
@@ -161,7 +144,7 @@ function AboutSection() {
         {/* ── Big "What I do" card — spans 2 cols on lg ── */}
         <div
           className="glow-card relative p-7 lg:col-span-2"
-          style={{ background: 'linear-gradient(135deg, rgba(255,135,9,0.04) 0%, rgba(13,13,31,0.9) 60%)' }}
+          style={{ background: 'linear-gradient(135deg, rgba(235, 126, 28, 0.04) 0%, rgba(13,13,31,0.9) 60%)' }}
         >
           <div className="absolute inset-x-0 top-0 h-0.5 rounded-t-xl"
             style={{ background: 'linear-gradient(90deg, transparent, var(--accent), transparent)' }}
@@ -169,10 +152,10 @@ function AboutSection() {
           <p className="label-text mb-5">What I do</p>
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { title: 'ERP & Dashboards', desc: 'Building complex enterprise systems with clean data visualization and efficient UX patterns.', accent: '#ff8709' },
-              { title: 'Modern UI Engineering', desc: 'Crafting pixel-perfect interfaces with smooth animations, responsive layouts, and accessibility.', accent: '#f7bdf8' },
-              { title: 'API Integration', desc: 'Seamlessly connecting frontends to complex backend systems with clean data management layers.', accent: '#ff5d73' },
-              { title: 'Performance & Scale', desc: 'Optimizing rendering, code-splitting, and bundle size to keep apps fast under heavy load.', accent: '#ffd166' },
+              { title: 'ERP & Dashboards', desc: 'Building complex enterprise systems with clean data visualization and efficient UX patterns.', accent: '#EB7E1C' },
+              { title: 'Modern UI Engineering', desc: 'Crafting pixel-perfect interfaces with smooth animations, responsive layouts, and accessibility.', accent: '#00ACDC' },
+              { title: 'API Integration', desc: 'Seamlessly connecting frontends to complex backend systems with clean data management layers.', accent: '#EB7E1C' },
+              { title: 'Performance & Scale', desc: 'Optimizing rendering, code-splitting, and bundle size to keep apps fast under heavy load.', accent: '#00ACDC' },
             ].map((item) => (
               <div key={item.title} className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
@@ -188,7 +171,7 @@ function AboutSection() {
         {/* ── Currently at card ── */}
         <div
           className="glow-card relative flex flex-col justify-between p-7"
-          style={{ background: 'linear-gradient(135deg, rgba(247,189,248,0.04) 0%, rgba(13,13,31,0.9) 60%)' }}
+          style={{ background: 'linear-gradient(135deg, rgba(0, 172, 220, 0.04) 0%, rgba(13,13,31,0.9) 60%)' }}
         >
           <div className="absolute inset-x-0 top-0 h-0.5 rounded-t-xl"
             style={{ background: 'linear-gradient(90deg, transparent, var(--accent-2), transparent)' }}
@@ -215,21 +198,18 @@ function AboutSection() {
       </div>
 
       {/* Skills grid */}
-      <div className="mt-6" data-reveal data-reveal-delay="4">
+      <div className="mt-10 mb-20" data-reveal data-reveal-delay="4">
         <div className="mb-5 flex items-center justify-between">
-          <p className="label-text">Core Skills</p>
-          <p className="text-[11px] text-[var(--muted)]" style={{ fontFamily: 'var(--font-display)' }}>
-            {skillsWithIcons.length} tools
-          </p>
+          <p className="label-text text-lg">Core Skills</p>
+
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-4">
           {skillsWithIcons.map((skill) => (
             <button
               key={skill.name}
               className="skill-chip group"
-              style={{ '--skill-color': skill.color }}
             >
-              <span style={{ color: skill.color, transition: 'color 0.2s' }}>{skill.icon}</span>
+              <span className="text-[var(--muted-2)] transition-colors duration-300 group-hover:text-[var(--accent)]">{skill.icon}</span>
               {skill.name}
             </button>
           ))}

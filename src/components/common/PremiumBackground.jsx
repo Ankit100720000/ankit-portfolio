@@ -8,7 +8,6 @@ const PremiumBackground = memo(function PremiumBackground({ reducedMotion = fals
       aria-hidden="true"
     >
       <div className="premium-bg__base" />
-      <div className="premium-bg__mesh" />
       <div className="premium-bg__grid" />
       <div className="premium-bg__vignette" />
     </div>

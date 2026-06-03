@@ -19,9 +19,9 @@ function ProjectModal({ project, palettes = [], projectIndex = 0, onClose }) {
   }, [project, onClose])
 
   const palette = palettes[projectIndex % Math.max(palettes.length, 1)] || {
-    accent: '#d8b568',
-    soft: 'rgba(216, 181, 104, 0.13)',
-    line: 'rgba(216, 181, 104, 0.5)',
+    accent: '#EB7E1C',
+    soft: 'rgba(235, 126, 28, 0.13)',
+    line: 'rgba(235, 126, 28, 0.5)',
   }
 
   return (

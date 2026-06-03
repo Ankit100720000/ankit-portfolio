@@ -71,10 +71,10 @@ const SkillBar = memo(function SkillBar({ name, level, index, accentColor }) {
 const SkillCard = memo(function SkillCard({ group, groupIndex }) {
   // Extract accent colors from the gradient class
   const accentColors = {
-    0: '#ff8709',
-    1: '#f7bdf8',
+    0: '#EB7E1C',
+    1: '#00ACDC',
   }
-  const accentColor = accentColors[groupIndex] || '#ff8709'
+  const accentColor = accentColors[groupIndex] || '#EB7E1C'
 
   return (
     <GlassCard className="skill-glass-card h-full rounded-2xl p-7 sm:p-8" data-reveal>

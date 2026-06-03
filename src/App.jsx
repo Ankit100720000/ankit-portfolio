@@ -38,8 +38,8 @@ function App() {
         <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <defs>
             <linearGradient id="page-trans-grad" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stopColor="rgba(255, 135, 9, 0.98)" />
-              <stop offset="100%" stopColor="rgba(247, 189, 248, 0.98)" />
+              <stop offset="0%" stopColor="rgba(235, 126, 28, 0.98)" />
+              <stop offset="100%" stopColor="rgba(0, 172, 220, 0.98)" />
             </linearGradient>
           </defs>
           <path className="page-transition-path" fill="url(#page-trans-grad)" d="M 0 100 V 100 Q 50 100 100 100 V 100 z" />
@@ -54,7 +54,7 @@ function App() {
         <main className="page-shell">
           <HeroSection />
 
-          <div className="py-24 md:py-32">
+          <div className="py-10 md:py-14">
             <Marquee items={['React Architecture', 'ERP Workflows', 'GSAP Motion Design', 'Performance Tuning', 'UI Engineering', 'API Integrations']} />
           </div>
 
@@ -62,7 +62,7 @@ function App() {
             <AboutSection />
           </Suspense>
 
-          <div className="section-block py-24 md:py-32">
+          <div className="section-block py-10 md:py-14">
             <div className="h-rule" />
           </div>
 
@@ -70,7 +70,7 @@ function App() {
             <ProjectsSection />
           </Suspense>
 
-          <div className="py-24 md:py-32">
+          <div className="py-10 md:py-14">
             <Marquee items={['Clean Code', 'Scalable Architecture', 'Enterprise UX', 'Interactive Grids', 'Tailwind Styling', 'Product Minded']} />
           </div>
 
@@ -78,7 +78,7 @@ function App() {
             <ExperienceSection />
           </Suspense>
 
-          <div className="section-block py-24 md:py-32">
+          <div className="section-block py-10 md:py-14">
             <div className="h-rule" />
           </div>
 

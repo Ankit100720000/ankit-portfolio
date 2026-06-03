@@ -3,7 +3,6 @@ import { ArrowUpRight, Mail, Code2, Layers, Zap, Globe } from "lucide-react";
 import { gsap } from "@/animations/gsap";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { heroMetrics } from "@/data/site";
-import GravityBall from "@/components/canvas/GravityBall";
 
 // Inline SVGs for icons removed from lucide-react
 const GithubIcon = () => (
@@ -128,8 +127,8 @@ function HeroSection() {
           "-=0.45",
         );
 
-      /* ── 3. Scroll-based parallax on left column ── */
-      gsap.to(".hero-left-col", {
+      /* ── 3. Scroll-based parallax on content ── */
+      gsap.to(".hero-content-wrap", {
         y: 80,
         ease: "none",
         scrollTrigger: {
@@ -157,18 +156,6 @@ function HeroSection() {
         yoyo: true,
         ease: "sine.inOut",
         delay: 2,
-      });
-
-      /* ── 5. Background color scroll transition ── */
-      gsap.to(document.documentElement, {
-        "--bg": "#0e100f",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 50%",
-          end: "bottom 50%",
-          scrub: 1.2,
-          invalidateOnRefresh: true,
-        },
       });
     }, sectionRef);
 
@@ -212,127 +199,105 @@ function HeroSection() {
         />
       </div>
 
-      {/* Gravity Physics Ball */}
-      {!prefersReducedMotion && <GravityBall containerRef={sectionRef} />}
-
-      <div className="relative mx-auto w-full">
-        <div className="grid gap-14 xl:gap-16 items-center">
-          {/* ── LEFT COLUMN ── */}
-          <div className="hero-left-col flex flex-col">
-            {/* Availability badge */}
-            <div data-reveal="badge" className="mb-8 w-fit">
-              {/* <div className="status-pill">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent)] opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--accent)]" />
-                </span>
-                Available for new work
-              </div> */}
-            </div>
-
-            {/* Main heading */}
-            <div data-reveal="title">
-              <h1
-                className="text-balance text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl xl:text-7xl"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                Hi, I'm{" "}
-                <span
-                  className="inline-block align-middle mx-2 h-[52px] w-[52px] overflow-hidden rounded-full border-2 border-[var(--accent)]/30 sm:h-[64px] sm:w-[64px] xl:h-[72px] xl:w-[72px]"
-                  style={{ boxShadow: "0 0 20px var(--accent-glow)" }}
-                >
-                  <img
-                    src="https://avatars.githubusercontent.com/u/1?v=4"
-                    alt="Ankit Maurya"
-                    className="h-full w-full object-cover"
-                  />
-                </span>
-                Ankit.
-              </h1>
-
-              <div className="mt-10">
-                <span
-                  className="text-3xl font-extrabold sm:text-4xl xl:text-[44px]"
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  <span className="role-text-word inline-block text-gradient-cool select-none">
-                    {roles[roleIndex]}
-                  </span>
-                </span>
-              </div>
-            </div>
-
-            {/* Subtitle */}
-            <p
-              data-reveal="subtitle"
-              className="mt-6 max-w-2xl text-balance text-base sm:text-lg lg:text-xl leading-relaxed text-[var(--muted)]"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Crafting clean, scalable, and visually stunning web experiences —
-              from complex ERP systems to modern consumer products.
-            </p>
-
-            {/* Stats row */}
-            <div
-              data-reveal="stats"
-              className="mt-8 flex flex-wrap items-center gap-8"
-            >
-              {heroMetrics.map((m) => (
-                <div key={m.label} className="hero-stat">
-                  <span className="hero-stat-value">{m.value}</span>
-                  <span className="hero-stat-label">{m.label}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA buttons */}
-            <div
-              data-reveal="buttons"
-              className="mt-10 flex flex-wrap items-center gap-3"
-            >
-              <a
-                id="hero-view-work-cta"
-                href="#projects"
-                className="btn-primary"
-              >
-                View Work
-                <ArrowUpRight
-                  size={16}
-                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </a>
-              <a id="hero-contact-cta" href="#contact" className="btn-ghost">
-                Get in touch
-              </a>
-            </div>
-
-            {/* Social links */}
-            <div data-reveal="socials" className="mt-8 flex items-center gap-2">
-              {socialLinks.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target={s.href.startsWith("http") ? "_blank" : undefined}
-                  rel={s.href.startsWith("http") ? "noreferrer" : undefined}
-                  aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-[var(--muted)] transition-all duration-200 hover:border-[var(--accent)]/40 hover:bg-[var(--accent-dim)] hover:text-[var(--accent)]"
-                >
-                  {s.icon}
-                </a>
-              ))}
-            </div>
+      <div className="relative mx-auto max-w-8xl w-full flex flex-col items-center text-center justify-center hero-content-wrap">
+        {/* Availability badge */}
+        <div data-reveal="badge" className="mb-6">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent-dim)] px-3.5 py-1 text-xs font-semibold tracking-wide text-[var(--accent)]" style={{ fontFamily: 'var(--font-display)' }}>
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent)] opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--accent)]" />
+            </span>
+            Available for Full-time Roles
           </div>
         </div>
+
+        {/* Main heading */}
+        <div data-reveal="title" className="flex flex-col items-center">
+          <h1
+            className="text-balance text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-7xl"
+            style={{
+              fontFamily: "var(--font-display)",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Hi, I'm <span className="text-gradient-cool">Ankit Maurya</span>
+          </h1>
+
+          <div className="mt-8">
+            <span
+              className="text-3xl font-extrabold sm:text-4xl md:text-5xl"
+              style={{
+                fontFamily: "var(--font-display)",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              <span className="role-text-word inline-block text-gradient-cool select-none">
+                {roles[roleIndex]}
+              </span>
+            </span>
+          </div>
+        </div>
+
+        {/* Subtitle */}
+        <p
+          data-reveal="subtitle"
+          className="mt-6 max-w-2xl text-balance text-base sm:text-lg lg:text-lg leading-relaxed text-[var(--muted)]"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          Crafting clean, scalable, and visually stunning web experiences —
+          from complex ERP systems to modern consumer products.
+        </p>
+
+        {/* Stats row */}
+        <div
+          data-reveal="stats"
+          className="mt-8 flex flex-wrap items-center justify-center gap-8"
+        >
+          {heroMetrics.map((m) => (
+            <div key={m.label} className="hero-stat">
+              <span className="hero-stat-value">{m.value}</span>
+              <span className="hero-stat-label">{m.label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA buttons */}
+        <div
+          data-reveal="buttons"
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+        >
+          <a
+            id="hero-view-work-cta"
+            href="#projects"
+            className="btn-primary"
+          >
+            View Work
+            <ArrowUpRight
+              size={16}
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+          <a id="hero-contact-cta" href="#contact" className="btn-ghost">
+            Get in touch
+          </a>
+           {socialLinks.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target={s.href.startsWith("http") ? "_blank" : undefined}
+              rel={s.href.startsWith("http") ? "noreferrer" : undefined}
+              aria-label={s.label}
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-[var(--muted)] transition-all duration-200 hover:border-[var(--accent)]/40 hover:bg-[var(--accent-dim)] hover:text-[var(--accent)]"
+            >
+              {s.icon}
+            </a>
+          ))}
+        </div>
+
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+      <div className="absolute bottom-0 left-5 flex flex-col items-center gap-2 opacity-40">
         <span
           className="text-[10px] uppercase tracking-[0.2em] text-[var(--muted)]"
           style={{ fontFamily: "var(--font-display)" }}

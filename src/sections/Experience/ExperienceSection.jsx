@@ -7,9 +7,9 @@ import { TimelineSvgLine } from '@/components/common/SvgDecorations'
 import { Briefcase, Calendar } from 'lucide-react'
 
 const expPalettes = [
-  { accent: '#ff8709', glow: 'rgba(255,135,9,0.15)', dim: 'rgba(255,135,9,0.06)', border: 'rgba(255,135,9,0.2)' },
-  { accent: '#f7bdf8', glow: 'rgba(247,189,248,0.15)', dim: 'rgba(247,189,248,0.06)', border: 'rgba(247,189,248,0.2)' },
-  { accent: '#ff5d73', glow: 'rgba(255,93,115,0.15)', dim: 'rgba(255,93,115,0.06)', border: 'rgba(255,93,115,0.2)' },
+  { accent: '#EB7E1C', glow: 'rgba(235,126,28,0.15)', dim: 'rgba(235,126,28,0.06)', border: 'rgba(235,126,28,0.2)' },
+  { accent: '#00ACDC', glow: 'rgba(0, 172, 220, 0.15)', dim: 'rgba(0, 172, 220, 0.06)', border: 'rgba(0, 172, 220, 0.2)' },
+  { accent: '#EB7E1C', glow: 'rgba(235,126,28,0.15)', dim: 'rgba(235,126,28,0.06)', border: 'rgba(235,126,28,0.2)' },
 ]
 
 function getInitials(company) {
@@ -32,27 +32,10 @@ function ExperienceSection() {
     }
   }, [])
 
-  useEffect(() => {
-    if (!sectionRef.current || prefersReducedMotion) return
 
-    const ctx = gsap.context(() => {
-      gsap.to(document.documentElement, {
-        '--bg': '#18080c',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 50%',
-          end: 'bottom 50%',
-          scrub: 1.2,
-          invalidateOnRefresh: true,
-        }
-      })
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [prefersReducedMotion])
 
   return (
-    <section id="experience" ref={sectionRef} className="section-block pt-28 pb-40 md:pt-36 md:pb-52">
+    <section id="experience" ref={sectionRef} className="section-block pt-20 pb-24 md:pt-28 md:pb-32">
 
       <div className="mb-16 flex items-end justify-between gap-6">
         <div>
