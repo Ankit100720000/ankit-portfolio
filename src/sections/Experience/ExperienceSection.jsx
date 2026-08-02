@@ -1,5 +1,6 @@
 import { experience } from '@/data/site'
 import { useGsapSection } from '@/hooks/useGsapSection'
+
 export default function ExperienceSection() {
   const ref = useGsapSection({ selector: '[data-animate]', stagger: 0.15 })
   return (

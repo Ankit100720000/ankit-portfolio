@@ -1,5 +1,6 @@
 import { contact } from '@/data/site'
 import { useGsapSection } from '@/hooks/useGsapSection'
+
 export default function ContactSection() {
   const ref = useGsapSection({ stagger: 0.14, start: 'top 82%' })
   return (

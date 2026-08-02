@@ -1,8 +1,36 @@
 import TechIcon from '@/components/common/TechIcon'
 import { useGsapSection } from '@/hooks/useGsapSection'
-const capabilities = [['Enterprise interfaces', 'ERP, CRM, ASP Web Forms & operations'], ['Frontend systems', 'React, Redux Toolkit & REST APIs'], ['Product UI', 'Figma, responsive patterns & accessibility'], ['Commerce and growth', 'Shopify, Razorpay, SEO & performance']]
-const toolkit = ['React', 'JavaScript', 'Redux Toolkit', 'Tailwind CSS', 'GSAP', 'Highcharts', 'REST APIs', 'Figma', 'GitHub', 'Shopify', 'AI APIs', 'Google Maps API']
-const outcomes = [['40%', 'Lower data inconsistency'], ['65→92', 'Lighthouse score'], ['500+', 'Documents processed daily'], ['35%', 'Engagement lift'], ['30%', 'Faster initial load']]
+
+const capabilities = [
+  ['Enterprise interfaces', 'ERP, CRM, ASP Web Forms & operations'],
+  ['Frontend systems', 'React, Redux Toolkit & REST APIs'],
+  ['Product UI', 'Figma, responsive patterns & accessibility'],
+  ['Commerce and growth', 'Shopify, Razorpay, SEO & performance'],
+]
+
+const toolkit = [
+  'React',
+  'JavaScript',
+  'Redux Toolkit',
+  'Tailwind CSS',
+  'GSAP',
+  'Highcharts',
+  'REST APIs',
+  'Figma',
+  'GitHub',
+  'Shopify',
+  'AI APIs',
+  'Google Maps API',
+]
+
+const outcomes = [
+  ['40%', 'Lower data inconsistency'],
+  ['65→92', 'Lighthouse score'],
+  ['500+', 'Documents processed daily'],
+  ['35%', 'Engagement lift'],
+  ['30%', 'Faster initial load'],
+]
+
 export default function AboutSection() {
   const ref = useGsapSection({ stagger: 0.09 })
   return (
