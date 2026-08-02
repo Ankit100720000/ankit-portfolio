@@ -1,0 +1,40 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="48" fill="#111114"/>
+  <rect x="52" y="52" width="1096" height="616" rx="34" fill="url(#bg)"/>
+  <rect x="92" y="112" width="1016" height="96" rx="28" fill="#121826"/>
+  <rect x="92" y="248" width="304" height="332" rx="30" fill="#121826"/>
+  <rect x="430" y="248" width="304" height="332" rx="30" fill="#121826"/>
+  <rect x="768" y="248" width="340" height="332" rx="30" fill="#121826"/>
+  <rect x="126" y="146" width="160" height="18" rx="9" fill="#334155"/>
+  <rect x="860" y="142" width="188" height="38" rx="19" fill="url(#cta)"/>
+  <rect x="122" y="286" width="244" height="146" rx="26" fill="url(#product)"/>
+  <rect x="122" y="460" width="160" height="18" rx="9" fill="#334155"/>
+  <rect x="122" y="498" width="118" height="42" rx="21" fill="#172554"/>
+  <rect x="460" y="286" width="244" height="146" rx="26" fill="url(#product2)"/>
+  <rect x="460" y="460" width="160" height="18" rx="9" fill="#334155"/>
+  <rect x="460" y="498" width="118" height="42" rx="21" fill="#18283F"/>
+  <rect x="806" y="290" width="264" height="22" rx="11" fill="#334155"/>
+  <rect x="806" y="336" width="264" height="122" rx="28" fill="#162133"/>
+  <circle cx="842" cy="398" r="18" fill="#22D3EE"/>
+  <rect x="874" y="386" width="152" height="18" rx="9" fill="#BFDBFE"/>
+  <rect x="806" y="494" width="204" height="18" rx="9" fill="#334155"/>
+  <rect x="806" y="530" width="264" height="26" rx="13" fill="#8B5CF6"/>
+  <defs>
+    <linearGradient id="bg" x1="52" y1="52" x2="1148" y2="668" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121826"/>
+      <stop offset="1" stop-color="#0D111A"/>
+    </linearGradient>
+    <linearGradient id="cta" x1="860" y1="142" x2="1048" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <linearGradient id="product" x1="122" y1="286" x2="366" y2="432" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="product2" x1="460" y1="286" x2="704" y2="432" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#1E293B"/>
+    </linearGradient>
+  </defs>
+</svg>
